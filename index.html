@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart N Soul Burgers - Bold, Fire-Cooked Flavor</title>
+  <style>
+    :root {
+      --black: #000000;
+      --dark-grey: #1a1a1a;
+      --grey: #2a2a2a;
+      --red: #d62828;
+      --red-glow: #ff3b3b;
+      --text-light: #f2f2f2;
+      --text-muted: #b5b5b5;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(to bottom, var(--black), var(--dark-grey));
+      color: var(--text-light);
+    }
+
+    /* NAV */
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 8%;
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--red-glow);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 4rem 8%;
+      background: radial-gradient(circle at top, var(--grey), var(--black));
+      text-align: left;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      color: var(--red);
+      margin: 0 0 1rem 0;
+      line-height: 1.1;
+    }
+
+    .hero-content p {
+      max-width: 600px;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--black);
+      padding: 0.9rem 1.8rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--red-glow);
+    }
+
+    /* SECTIONS */
+
+    .section {
+      padding: 4rem 8%;
+    }
+
+    .section-dark {
+      background: linear-gradient(to bottom, var(--dark-grey), var(--black));
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+      margin-top: 0;
+    }
+
+    .section p {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* MENU GRID */
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .menu-item {
+      background: var(--grey);
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--red);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(214, 40, 40, 0.3);
+    }
+
+    .menu-item h3 {
+      color: var(--red-glow);
+      margin: 0 0 0.5rem 0;
+    }
+
+    .menu-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .price {
+      color: var(--red);
+      font-weight: 600;
+      margin-top: 0.75rem;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--black);
+      color: var(--text-muted);
+      border-top: 1px solid var(--grey);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--red);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="logo">Heart N Soul</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Bold. Fire-Cooked. Soul.</h1>
+      <p>Heart N Soul Burgers delivers bold, fire-cooked flavor with rugged authenticity and real soul. Every burger is crafted with intention, combining chef-driven technique and backyard grit to create unforgettable, handcrafted food that feels like home and hits with pure flavor.</p>
+      <a href="#menu" class="btn-primary">Explore Our Menu</a>
+    </div>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section class="section section-dark" id="menu">
+    <h2>Our Signature Burgers</h2>
+    <p>Hand-crafted excellence in every bite. Fire-cooked to perfection.</p>
+    
+    <div class="menu-grid">
+      <div class="menu-item">
+        <h3>The Soul Burner</h3>
+        <p>Flame-grilled beef patty with ghost pepper aioli, caramelized onions, and smoked cheddar on a toasted brioche.</p>
+        <div class="price">$14.99</div>
+      </div>
+
+      <div class="menu-item">
+        <h3>Backyard Classic</h3>
+        <p>Double patty with aged cheddar, crispy bacon, pickles, and our signature soul sauce. Pure grit.</p>
+        <div class="price">$15.99</div>
+      </div>
+
+      <div class="menu-item">
+        <h3>Smoky Bourbon Beast</h3>
+        <p>Charred beef with bourbon-glazed onions, crispy jalapeños, pepper jack cheese, and bourbon BBQ sauce.</p>
+        <div class="price">$16.99</div>
+      </div>
+
+      <div class="menu-item">
+        <h3>The Inferno</h3>
+        <p>Triple-stacked patty loaded with habanero cheese, spicy pickled peppers, crispy fried onions, and hot sauce.</p>
+        <div class="price">$17.99</div>
+      </div>
+
+      <div class="menu-item">
+        <h3>Garden Fire</h3>
+        <p>Fire-grilled portobello mushroom cap with roasted red peppers, fresh arugula, aged gouda, and herb aioli.</p>
+        <div class="price">$13.99</div>
+      </div>
+
+      <div class="menu-item">
+        <h3>The Comeback</h3>
+        <p>Charred beef with comeback sauce, crispy shrimp, lettuce, tomato, and a fried egg on top.</p>
+        <div class="price">$16.99</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section" id="about">
+    <h2>About Heart N Soul</h2>
+    <p>We believe in bold flavors and authentic craft. Every burger that leaves our kitchen is built with intention—combining professional technique with the warmth and grit of backyard cooking. We don't cut corners. We fire-cook every patty to develop that perfect crust and juicy interior. We source quality ingredients. We taste everything. We respect the art of the burger.</p>
+    <p>Heart N Soul Burgers isn't just food—it's a feeling. It's home. It's soul. It's pure flavor.</p>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section section-dark" id="contact">
+    <h2>Get In Touch</h2>
+    <p>Ready to experience bold, fire-cooked flavor with real soul?</p>
+    <p><strong>Email:</strong> hello@heartnsoulfburgers.com</p>
+    <p><strong>Phone:</strong> (555) 123-4567</p>
+    <p><strong>Hours:</strong> Tue-Thu 11am-10pm | Fri-Sat 11am-11pm | Sun 12pm-9pm | Closed Monday</p>
+    <a href="mailto:hello@heartnsoulfburgers.com" class="btn-primary">Send us a message</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <p>&copy; 2026 Heart N Soul Burgers. All rights reserved. Bold. Fire-Cooked. Soul.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
