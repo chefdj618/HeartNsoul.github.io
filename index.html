@@ -1,792 +1,1034 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Heart N Soul Burgers</title>
-  <style>
-    :root {
-      --bg: #0f0d0d;
-      --panel: #150f0f;
-      --panel-2: #1a1414;
-      --red: #e52d2d;
-      --red-bright: #ff3f3f;
-      --cream: #f6f0e6;
-      --gold: #f9d46d;
-      --green: #1ecb78;
-      --text: #f4efe9;
-      --muted: #c3b8ad;
-      --line: rgba(255, 90, 90, 0.7);
-      --shadow: rgba(255, 50, 50, 0.28);
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0b0909;
-      color: var(--text);
-      letter-spacing: 0.02em;
-    }
-
-    .page {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
-      background: linear-gradient(180deg, #111010 0%, #0e0d0d 100%);
-      min-height: 100vh;
-    }
-
-    .menu-board {
-      background:
-        radial-gradient(circle at 15% 15%, rgba(255, 80, 80, 0.09), transparent 20%),
-        radial-gradient(circle at 75% 20%, rgba(255, 80, 80, 0.08), transparent 18%),
-        #141111;
-      border: 3px solid rgba(255, 76, 76, 0.7);
-      box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1), 0 0 35px rgba(255, 60, 60, 0.15);
-      padding: 14px;
-      overflow: hidden;
-    }
-
-    .board-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .panel {
-      background: rgba(22, 18, 18, 0.96);
-      border: 2px solid rgba(255, 80, 80, 0.35);
-      padding: 14px 14px 10px;
-      position: relative;
-      min-height: 240px;
-    }
-
-    .brand-wrap {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 14px;
-    }
-
-    .brand-name {
-      position: relative;
-      font-weight: 900;
-      font-style: italic;
-      color: #f4f0eb;
-      text-transform: none;
-      line-height: 0.88;
-      text-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
-    }
-
-    .brand-name .heart {
-      display: block;
-      font-size: 5rem;
-      font-family: Georgia, serif;
-      color: #f3eee9;
-      text-shadow: 0 0 18px rgba(255, 70, 70, 0.18);
-      letter-spacing: -0.06em;
-      transform: skewX(-10deg);
-      position: relative;
-      z-index: 1;
-    }
-
-    .brand-name .heart span {
-      color: var(--red);
-      font-weight: 900;
-    }
-
-    .brand-name .burgers {
-      font-size: 2.9rem;
-      color: var(--red);
-      letter-spacing: -0.04em;
-      position: relative;
-      left: -2px;
-    }
-
-    .heart-shape {
-      position: relative;
-      width: 130px;
-      height: 90px;
-      margin: 12px auto 0 auto;
-      transform: rotate(-10deg);
-      filter: drop-shadow(0 0 10px rgba(255, 70, 70, 0.25));
-    }
-
-    .heart-shape:before,
-    .heart-shape:after {
-      content: "";
-      position: absolute;
-      width: 52px;
-      height: 78px;
-      background: var(--red);
-      border-radius: 50px 50px 0 0;
-      top: 0;
-    }
-
-    .heart-shape:before {
-      left: 26px;
-      transform: rotate(-45deg);
-      transform-origin: 0 100%;
-    }
-
-    .heart-shape:after {
-      left: 0;
-      transform: rotate(45deg);
-      transform-origin: 100% 100%;
-    }
-
-    .heart-mark {
-      position: absolute;
-      width: 32px;
-      height: 32px;
-      background: var(--red);
-      transform: rotate(45deg);
-      border-radius: 8px;
-      left: 50%;
-      top: 50%;
-      margin-left: -16px;
-      margin-top: -16px;
-      box-shadow: 0 0 10px rgba(255, 70, 70, 0.18);
-    }
-
-    .brand-signoff {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      margin-top: 12px;
-      font-size: 0.92rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--red);
-      font-weight: 800;
-    }
-
-    .brand-signoff .line {
-      flex: 1;
-      height: 4px;
-      background: linear-gradient(90deg, var(--red), transparent);
-      border-radius: 999px;
-    }
-
-    .combo-box {
-      background: linear-gradient(180deg, #1e1b1a 0%, #100b0b 100%);
-      border: 2px solid rgba(255, 57, 57, 0.8);
-      padding: 10px 10px 8px;
-      position: relative;
-      min-height: 200px;
-    }
-
-    .combo-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 10px;
-      color: var(--red);
-      font-weight: 900;
-      text-transform: uppercase;
-      font-size: 1.25rem;
-      letter-spacing: 0.04em;
-    }
-
-    .combo-heart {
-      width: 20px;
-      height: 20px;
-      background: var(--red);
-      transform: rotate(45deg);
-      position: relative;
-      display: inline-block;
-      margin-left: 6px;
-    }
-
-    .combo-heart::before,
-    .combo-heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: var(--red);
-      border-radius: 50%;
-    }
-
-    .combo-heart::before { left: -10px; top: 0; }
-    .combo-heart::after { left: 0; top: -10px; }
-
-    .combo-price {
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: var(--red);
-      line-height: 1;
-      display: inline-block;
-      letter-spacing: -0.05em;
-      margin: 0 0 6px;
-      text-shadow: 0 0 12px rgba(255, 60, 60, 0.2);
-    }
-
-    .combo-sub {
-      color: var(--gold);
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-    }
-
-    .combo-includes {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: var(--cream);
-      opacity: 0.9;
-      letter-spacing: 0.06em;
-      margin-bottom: 6px;
-    }
-
-    .combo-list {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--cream);
-      font-size: 0.88rem;
-      list-style: disc;
-    }
-
-    .combo-note {
-      margin-top: 10px;
-      color: var(--red);
-      font-size: 0.88rem;
-      text-transform: uppercase;
-      font-weight: 900;
-      line-height: 1.2;
-    }
-
-    .combo-visuals {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 16px;
-      margin-top: 8px;
-    }
-
-    .drink-bottle {
-      width: 62px;
-      height: 110px;
-      background: linear-gradient(180deg, #9a062d 0%, #6b0d1f 100%);
-      border-radius: 16px 16px 10px 10px;
-      position: relative;
-      border: 2px solid rgba(255, 150, 150, 0.6);
-      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.08);
-    }
-
-    .drink-bottle:nth-child(2) {
-      background: linear-gradient(180deg, #d7b36d 0%, #a56f2f 100%);
-    }
-
-    .drink-bottle::before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: 10px;
-      right: 10px;
-      height: 12px;
-      background: rgba(62, 17, 17, 0.75);
-      border-radius: 12px 12px 4px 4px;
-    }
-
-    .drink-bottle::after {
-      content: "";
-      position: absolute;
-      inset: 12px 8px 8px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent 60%);
-      border-radius: 10px;
-    }
-
-    .menu-section {
-      margin-top: 10px;
-      border-top: 2px solid rgba(255, 90, 90, 0.5);
-      padding-top: 12px;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-transform: uppercase;
-      font-weight: 900;
-      color: var(--red);
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-      letter-spacing: 0.06em;
-    }
-
-    .tiny-heart {
-      width: 16px;
-      height: 16px;
-      background: var(--red);
-      transform: rotate(45deg);
-      display: inline-block;
-      position: relative;
-    }
-
-    .tiny-heart::before,
-    .tiny-heart::after {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      background: var(--red);
-      border-radius: 50%;
-    }
-
-    .tiny-heart::before { left: -8px; top: 0; }
-    .tiny-heart::after { left: 0; top: -8px; }
-
-    .menu-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      align-items: start;
-      margin: 12px 0;
-      padding-bottom: 6px;
-      border-bottom: 1px dashed rgba(255, 80, 80, 0.4);
-    }
-
-    .menu-item:last-child { border-bottom: none; }
-
-    .item-name {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--cream);
-      font-weight: 700;
-      font-size: 1rem;
-    }
-
-    .item-name .mini-heart {
-      width: 10px;
-      height: 10px;
-      background: var(--red);
-      transform: rotate(45deg);
-      display: inline-block;
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .mini-heart::before, .mini-heart::after {
-      content: "";
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--red);
-    }
-
-    .mini-heart::before { left: -5px; top: 0; }
-    .mini-heart::after { left: 0; top: -5px; }
-
-    .item-price {
-      color: var(--red);
-      font-weight: 900;
-      font-size: 1rem;
-      white-space: nowrap;
-    }
-
-    .description {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.45;
-      max-width: 420px;
-    }
-
-    .section-highlight {
-      background: rgba(16, 25, 18, 0.9);
-      border: 2px solid rgba(41, 209, 127, 0.88);
-      color: var(--cream);
-      padding: 14px 16px 12px;
-      margin-top: 14px;
-      position: relative;
-    }
-
-    .section-highlight .brand {
-      color: var(--green);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 10px;
-    }
-
-    .earth-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .earth-badge {
-      display: inline-block;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #b8d7a7 0%, #2d8f63 30%, #163a26 100%);
-      border: 2px solid rgba(255,255,255,0.5);
-      position: relative;
-      box-shadow: inset 0 0 8px rgba(255,255,255,0.3);
-    }
-
-    .earth-badge::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: linear-gradient(90deg, transparent 45%, rgba(255,255,255,0.28) 50%, transparent 55%);
-    }
-
-    .section-highlight .text {
-      color: var(--cream);
-      line-height: 1.45;
-      font-size: 0.92rem;
-    }
-
-    .section-highlight .text strong {
-      color: var(--green);
-      font-weight: 800;
-    }
-
-    .signature-drinks {
-      margin-top: 12px;
-    }
-
-    .drink-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 8px;
-    }
-
-    .drink-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px;
-      align-items: center;
-      margin: 10px 0;
-    }
-
-    .drink-label {
-      font-size: 0.88rem;
-      color: var(--cream);
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .drink-price {
-      color: var(--red);
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .drink-mini {
-      margin-top: 8px;
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 0.76rem;
-      line-height: 1.4;
-    }
-
-    .bottle-shape {
-      width: 52px;
-      height: 90px;
-      border-radius: 12px 12px 10px 10px;
-      position: relative;
-      background: linear-gradient(180deg, #a50d28 0%, #5e0d20 100%);
-      border: 2px solid rgba(255,255,255,0.2);
-      flex-shrink: 0;
-    }
-
-    .bottle-shape::before {
-      content: "";
-      position: absolute;
-      left: 12px;
-      right: 12px;
-      top: -10px;
-      height: 12px;
-      background: rgba(80, 20, 20, 0.8);
-      border-radius: 10px 10px 4px 4px;
-    }
-
-    .bottle-shape.gold {
-      background: linear-gradient(180deg, #f2d783 0%, #c68835 100%);
-    }
-
-    .follow-wrap {
-      margin-top: 16px;
-      border-top: 2px solid rgba(255, 90, 90, 0.45);
-      padding-top: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .follow-text {
-      color: var(--red);
-      text-transform: uppercase;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      font-size: 0.95rem;
-    }
-
-    .socials {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      color: var(--cream);
-      font-size: 1.15rem;
-    }
-
-    .social-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: var(--red);
-      font-weight: 900;
-      font-size: 0.7rem;
-    }
-
-    .bottom-tag {
-      margin-top: 10px;
-      text-align: right;
-      color: var(--red);
-      text-transform: uppercase;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      font-size: 1.14rem;
-      line-height: 1.2;
-    }
-
-    @media (max-width: 900px) {
-      .board-grid { grid-template-columns: 1fr; }
-      .brand-wrap { grid-template-columns: 1fr; }
-      .drink-grid { grid-template-columns: 1fr; }
-      .page { padding: 12px; }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <div class="menu-board">
-      <div class="board-grid">
-        <div class="panel">
-          <div class="brand-wrap">
-            <div class="brand-name">
-              <div class="heart"><span>Heart</span>N<span>Soul</span></div>
-              <div class="burgers">BURGERS</div>
-            </div>
-            <div>
-              <div class="heart-shape"></div>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Heart N Soul Burgers serves handcrafted smash burgers, combos, soul fries, and signature drinks in a warm, welcoming neighborhood setting."
+    />
+    <title>Heart N Soul Burgers</title>
+    <style>
+      :root {
+        --bg: #0d0909;
+        --bg-2: #171111;
+        --panel: #171212;
+        --panel-2: #1d1515;
+        --red: #e62c2c;
+        --red-deep: #b81225;
+        --red-soft: rgba(255, 90, 90, 0.15);
+        --cream: #f6efe8;
+        --gold: #f4cf77;
+        --green: #27c77e;
+        --green-dark: #12392b;
+        --text: #f8f2ec;
+        --muted: #d7c9bc;
+        --line: rgba(255, 90, 90, 0.65);
+        --shadow: rgba(255, 55, 55, 0.28);
+        --shadow-soft: rgba(0, 0, 0, 0.2);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #0b0909;
+        color: var(--text);
+        letter-spacing: 0.02em;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 24px 16px 48px;
+        min-height: 100vh;
+        background: linear-gradient(180deg, #111010 0%, #0d0b0b 100%);
+      }
+
+      .menu-board {
+        background:
+          radial-gradient(circle at 15% 15%, rgba(255, 80, 80, 0.09), transparent 20%),
+          radial-gradient(circle at 75% 20%, rgba(255, 80, 80, 0.08), transparent 18%),
+          #141111;
+        border: 3px solid rgba(255, 76, 76, 0.72);
+        box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1), 0 0 35px rgba(255, 60, 60, 0.15);
+        padding: 14px;
+        overflow: hidden;
+      }
+
+      .site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 10px 8px 18px;
+        border-bottom: 2px solid rgba(255, 90, 90, 0.5);
+        margin-bottom: 16px;
+      }
+
+      .brand-lockup {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-mark {
+        width: 20px;
+        height: 20px;
+        transform: rotate(45deg);
+        background: var(--red);
+        position: relative;
+        box-shadow: 0 0 12px rgba(255, 90, 90, 0.2);
+      }
+
+      .brand-mark::before,
+      .brand-mark::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--red);
+        border-radius: 50%;
+      }
+
+      .brand-mark::before { left: -10px; top: 0; }
+      .brand-mark::after { left: 0; top: -10px; }
+
+      .brand-name-inline {
+        color: var(--cream);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.9rem;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .main-nav a {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.75rem;
+        font-weight: 800;
+        transition: color 0.2s ease;
+      }
+
+      .main-nav a:hover,
+      .main-nav a:focus-visible {
+        color: var(--red);
+      }
+
+      .order-btn,
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid rgba(255, 90, 90, 0.8);
+        background: linear-gradient(180deg, #f43d3d 0%, #b6121d 100%);
+        color: var(--cream);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 10px 18px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 8px 18px rgba(229, 45, 45, 0.2);
+      }
+
+      .order-btn:hover,
+      .order-btn:focus-visible,
+      .cta-btn:hover,
+      .cta-btn:focus-visible {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 20px rgba(229, 45, 45, 0.26);
+      }
+
+      .board-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .panel {
+        background: rgba(22, 18, 18, 0.96);
+        border: 2px solid rgba(255, 80, 80, 0.35);
+        padding: 14px 14px 10px;
+        position: relative;
+        min-height: 240px;
+      }
+
+      .brand-wrap {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 14px;
+      }
+
+      .brand-name {
+        position: relative;
+        font-weight: 900;
+        font-style: italic;
+        color: #f4f0eb;
+        text-transform: none;
+        line-height: 0.88;
+        text-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+      }
+
+      .brand-name .heart {
+        display: block;
+        font-size: clamp(3.2rem, 5vw, 5rem);
+        font-family: Georgia, serif;
+        color: #f3eee9;
+        text-shadow: 0 0 18px rgba(255, 70, 70, 0.18);
+        letter-spacing: -0.06em;
+        transform: skewX(-10deg);
+        position: relative;
+        z-index: 1;
+      }
+
+      .brand-name .heart span {
+        color: var(--red);
+        font-weight: 900;
+      }
+
+      .brand-name .burgers {
+        font-size: clamp(2rem, 4vw, 2.9rem);
+        color: var(--red);
+        letter-spacing: -0.04em;
+        position: relative;
+        left: -2px;
+      }
+
+      .heart-shape {
+        position: relative;
+        width: 130px;
+        height: 90px;
+        margin: 12px auto 0 auto;
+        transform: rotate(-10deg);
+        filter: drop-shadow(0 0 10px rgba(255, 70, 70, 0.25));
+      }
+
+      .heart-shape::before,
+      .heart-shape::after {
+        content: "";
+        position: absolute;
+        width: 52px;
+        height: 78px;
+        background: var(--red);
+        border-radius: 50px 50px 0 0;
+        top: 0;
+      }
+
+      .heart-shape::before {
+        left: 26px;
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+      }
+
+      .heart-shape::after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+      }
+
+      .heart-mark {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        background: var(--red);
+        transform: rotate(45deg);
+        border-radius: 8px;
+        left: 50%;
+        top: 50%;
+        margin-left: -16px;
+        margin-top: -16px;
+        box-shadow: 0 0 10px rgba(255, 70, 70, 0.18);
+      }
+
+      .brand-signoff {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        font-size: 0.92rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--red);
+        font-weight: 800;
+      }
+
+      .brand-signoff .line {
+        flex: 1;
+        height: 4px;
+        background: linear-gradient(90deg, var(--red), transparent);
+        border-radius: 999px;
+      }
+
+      .combo-box {
+        background: linear-gradient(180deg, #1e1b1a 0%, #100b0b 100%);
+        border: 2px solid rgba(255, 57, 57, 0.8);
+        padding: 10px 10px 8px;
+        position: relative;
+        min-height: 200px;
+      }
+
+      .combo-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 10px;
+        color: var(--red);
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: 1.25rem;
+        letter-spacing: 0.04em;
+      }
+
+      .combo-heart {
+        width: 20px;
+        height: 20px;
+        background: var(--red);
+        transform: rotate(45deg);
+        position: relative;
+        display: inline-block;
+        margin-left: 6px;
+      }
+
+      .combo-heart::before,
+      .combo-heart::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--red);
+        border-radius: 50%;
+      }
+
+      .combo-heart::before { left: -10px; top: 0; }
+      .combo-heart::after { left: 0; top: -10px; }
+
+      .combo-price {
+        font-size: clamp(2.3rem, 4vw, 2.8rem);
+        font-weight: 900;
+        color: var(--red);
+        line-height: 1;
+        display: inline-block;
+        letter-spacing: -0.05em;
+        margin: 0 0 6px;
+        text-shadow: 0 0 12px rgba(255, 60, 60, 0.2);
+      }
+
+      .combo-sub {
+        color: var(--gold);
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+      }
+
+      .combo-includes {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var(--cream);
+        opacity: 0.9;
+        letter-spacing: 0.06em;
+        margin-bottom: 6px;
+      }
+
+      .combo-list {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--cream);
+        font-size: 0.88rem;
+        list-style: disc;
+      }
+
+      .combo-note {
+        margin-top: 10px;
+        color: var(--red);
+        font-size: 0.88rem;
+        text-transform: uppercase;
+        font-weight: 900;
+        line-height: 1.2;
+      }
+
+      .combo-visuals {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 16px;
+        margin-top: 8px;
+      }
+
+      .drink-bottle {
+        width: 62px;
+        height: 110px;
+        background: linear-gradient(180deg, #9a062d 0%, #6b0d1f 100%);
+        border-radius: 16px 16px 10px 10px;
+        position: relative;
+        border: 2px solid rgba(255, 150, 150, 0.6);
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.08);
+      }
+
+      .drink-bottle:nth-child(2) {
+        background: linear-gradient(180deg, #d7b36d 0%, #a56f2f 100%);
+      }
+
+      .drink-bottle::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 10px;
+        right: 10px;
+        height: 12px;
+        background: rgba(62, 17, 17, 0.75);
+        border-radius: 12px 12px 4px 4px;
+      }
+
+      .drink-bottle::after {
+        content: "";
+        position: absolute;
+        inset: 12px 8px 8px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent 60%);
+        border-radius: 10px;
+      }
+
+      .menu-section {
+        margin-top: 10px;
+        border-top: 2px solid rgba(255, 90, 90, 0.5);
+        padding-top: 12px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-transform: uppercase;
+        font-weight: 900;
+        color: var(--red);
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        letter-spacing: 0.06em;
+      }
+
+      .tiny-heart {
+        width: 16px;
+        height: 16px;
+        background: var(--red);
+        transform: rotate(45deg);
+        display: inline-block;
+        position: relative;
+      }
+
+      .tiny-heart::before,
+      .tiny-heart::after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: var(--red);
+        border-radius: 50%;
+      }
+
+      .tiny-heart::before { left: -8px; top: 0; }
+      .tiny-heart::after { left: 0; top: -8px; }
+
+      .menu-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: start;
+        margin: 12px 0;
+        padding-bottom: 6px;
+        border-bottom: 1px dashed rgba(255, 80, 80, 0.4);
+      }
+
+      .menu-item:last-child {
+        border-bottom: none;
+      }
+
+      .item-name {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--cream);
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .mini-heart {
+        width: 10px;
+        height: 10px;
+        background: var(--red);
+        transform: rotate(45deg);
+        display: inline-block;
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .mini-heart::before,
+      .mini-heart::after {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--red);
+      }
+
+      .mini-heart::before { left: -5px; top: 0; }
+      .mini-heart::after { left: 0; top: -5px; }
+
+      .item-price {
+        color: var(--red);
+        font-weight: 900;
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+
+      .description {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.45;
+        max-width: 420px;
+      }
+
+      .section-highlight {
+        background: rgba(16, 25, 18, 0.9);
+        border: 2px solid rgba(41, 209, 127, 0.88);
+        color: var(--cream);
+        padding: 14px 16px 12px;
+        margin-top: 14px;
+        position: relative;
+      }
+
+      .section-highlight .brand {
+        color: var(--green);
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 10px;
+      }
+
+      .earth-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .earth-badge {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 35%, #b8d7a7 0%, #2d8f63 30%, #163a26 100%);
+        border: 2px solid rgba(255,255,255,0.5);
+        position: relative;
+        box-shadow: inset 0 0 8px rgba(255,255,255,0.3);
+      }
+
+      .earth-badge::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: linear-gradient(90deg, transparent 45%, rgba(255,255,255,0.28) 50%, transparent 55%);
+      }
+
+      .section-highlight .text {
+        color: var(--cream);
+        line-height: 1.45;
+        font-size: 0.92rem;
+      }
+
+      .section-highlight .text strong {
+        color: var(--green);
+        font-weight: 800;
+      }
+
+      .signature-drinks {
+        margin-top: 12px;
+      }
+
+      .drink-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-top: 8px;
+      }
+
+      .drink-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        align-items: center;
+        margin: 10px 0;
+      }
+
+      .drink-label {
+        font-size: 0.88rem;
+        color: var(--cream);
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .drink-price {
+        color: var(--red);
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .drink-mini {
+        margin-top: 8px;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.76rem;
+        line-height: 1.4;
+      }
+
+      .bottle-shape {
+        width: 52px;
+        height: 90px;
+        border-radius: 12px 12px 10px 10px;
+        position: relative;
+        background: linear-gradient(180deg, #a50d28 0%, #5e0d20 100%);
+        border: 2px solid rgba(255,255,255,0.2);
+        flex-shrink: 0;
+      }
+
+      .bottle-shape::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        top: -10px;
+        height: 12px;
+        background: rgba(80, 20, 20, 0.8);
+        border-radius: 10px 10px 4px 4px;
+      }
+
+      .bottle-shape.gold {
+        background: linear-gradient(180deg, #f2d783 0%, #c68835 100%);
+      }
+
+      .contact-card {
+        background: rgba(21, 15, 15, 0.88);
+        border: 2px solid rgba(255, 80, 80, 0.35);
+        padding: 14px;
+        margin-top: 14px;
+      }
+
+      .contact-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .info-block {
+        border: 1px solid rgba(255, 90, 90, 0.28);
+        background: rgba(255, 255, 255, 0.02);
+        padding: 10px 12px;
+      }
+
+      .info-label {
+        display: block;
+        color: var(--gold);
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 800;
+        margin-bottom: 6px;
+      }
+
+      .info-value {
+        color: var(--cream);
+        font-size: 0.92rem;
+        line-height: 1.45;
+      }
+
+      .follow-wrap {
+        margin-top: 16px;
+        border-top: 2px solid rgba(255, 90, 90, 0.45);
+        padding-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .follow-text {
+        color: var(--red);
+        text-transform: uppercase;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        font-size: 0.95rem;
+      }
+
+      .socials {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        color: var(--cream);
+        font-size: 1.15rem;
+      }
+
+      .social-dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.18);
+        color: var(--red);
+        font-weight: 900;
+        font-size: 0.7rem;
+      }
+
+      .bottom-tag {
+        margin-top: 10px;
+        text-align: right;
+        color: var(--red);
+        text-transform: uppercase;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        font-size: 1.14rem;
+        line-height: 1.2;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+
+      @media (max-width: 900px) {
+        .board-grid { grid-template-columns: 1fr; }
+        .brand-wrap { grid-template-columns: 1fr; }
+        .drink-grid { grid-template-columns: 1fr; }
+        .page { padding: 12px; }
+        .site-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .main-nav {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .menu-item {
+          grid-template-columns: 1fr;
+        }
+        .contact-row {
+          grid-template-columns: 1fr;
+        }
+        .earth-row {
+          grid-template-columns: 1fr;
+        }
+        .brand-signoff {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+        }
+        .brand-signoff .line {
+          width: 100%;
+          height: 3px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="menu-board">
+        <header class="site-header" aria-label="Main header">
+          <div class="brand-lockup" aria-label="Heart N Soul Burgers brand">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-name-inline">Heart N Soul</span>
           </div>
 
-          <div class="brand-signoff">
-            <span>Made With Heart</span>
-            <div class="line"></div>
-            <span>Fueled by the Soul</span>
-          </div>
+          <nav class="main-nav" aria-label="Main navigation">
+            <a href="#menu">Menu</a>
+            <a href="#combos">Combos</a>
+            <a href="#drinks">Drinks</a>
+            <a href="#visit">Visit</a>
+          </nav>
 
-          <div class="menu-section">
-            <div class="section-head">
-              <span class="tiny-heart"></span>
-              <span>Heart Favorites</span>
-            </div>
+          <a class="order-btn" href="tel:+15551234567" aria-label="Call to order">Order Now</a>
+        </header>
 
-            <div class="menu-item">
-              <div>
-                <div class="item-name"><span class="mini-heart"></span> Jr. Heart Combo</div>
-                <div class="description">Single Jr. Heart smashburger, Soul Fries &amp; drink</div>
-              </div>
-              <div class="item-price">$7.99</div>
-            </div>
-
-            <div class="menu-item">
-              <div>
-                <div class="item-name"><span class="mini-heart"></span> Single Heart</div>
-              </div>
-              <div class="item-price">$9.99</div>
-            </div>
-
-            <div class="menu-item">
-              <div>
-                <div class="item-name"><span class="mini-heart"></span> Heart Combo</div>
-                <div class="description">Single Heart, Soul Fries &amp; drink</div>
-              </div>
-              <div class="item-price">$15.99</div>
-            </div>
-
-            <div class="menu-item">
-              <div>
-                <div class="item-name"><span class="mini-heart"></span> Double Heart</div>
-                <div class="description">Double smashburger</div>
-              </div>
-              <div class="item-price">$13.99</div>
-            </div>
-
-            <div class="menu-item">
-              <div>
-                <div class="item-name"><span class="mini-heart"></span> Double Heart Combo</div>
-                <div class="description">Double Heart, Soul Fries &amp; drink</div>
-              </div>
-              <div class="item-price">$19.99</div>
-            </div>
-          </div>
-
-          <div class="menu-section" style="margin-top: 18px;">
-            <div class="section-head">
-              <span class="tiny-heart"></span>
-              <span>Sides</span>
-            </div>
-
-            <div class="menu-item">
-              <div>
-                <div class="item-name"><span class="mini-heart"></span> Soul Fries</div>
-                <div class="description">Fresh-cut fries tossed in our signature Spirit Seasoning.</div>
-              </div>
-              <div class="item-price">$4.99</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel">
-          <div class="combo-box">
-            <div class="combo-header">
-              <span class="combo-heart"></span>
-              <span>2 Heart Combos</span>
-            </div>
-
-            <div class="combo-price">FOR $25</div>
-            <div class="combo-sub">Best Value</div>
-            <div class="combo-includes">Includes:</div>
-            <ul class="combo-list">
-              <li>2 Single Heart Burgers</li>
-              <li>2 Soul Fries</li>
-              <li>2 Signature Drinks</li>
-            </ul>
-
-            <div class="combo-note">Good Food.<br>Real Soul.</div>
-
-            <div class="combo-visuals">
-              <div class="drink-bottle"></div>
-              <div class="drink-bottle"></div>
-            </div>
-          </div>
-
-          <div class="menu-section">
-            <div class="section-head">
-              <span class="tiny-heart"></span>
-              <span>Signature Hearts</span>
-            </div>
-
-            <div class="menu-item">
-              <div>
-                <div class="item-name"><span class="mini-heart"></span> Diablo Heart</div>
-                <div class="description">Double smashburger with jalapeño avocado Boursin spread, 3 pepper gouda, fried jalapeños, lettuce &amp; tomato.</div>
-              </div>
-              <div class="item-price">$16.99</div>
-            </div>
-
-            <div class="menu-item">
-              <div>
-                <div class="item-name"><span class="mini-heart"></span> Diablo Combo</div>
-                <div class="description">Includes Soul Fries &amp; drink</div>
-              </div>
-              <div class="item-price">$22.99</div>
-            </div>
-
-            <div class="menu-item">
-              <div>
-                <div class="item-name"><span class="mini-heart"></span> Smokey Heart</div>
-                <div class="description">Double smashburger topped with beef bacon, smoked cheddar, caramelized onions &amp; bourbon BBQ.</div>
-              </div>
-              <div class="item-price">$17.99</div>
-            </div>
-
-            <div class="menu-item">
-              <div>
-                <div class="item-name"><span class="mini-heart"></span> Smokey Combo</div>
-                <div class="description">Includes Soul Fries &amp; drink</div>
-              </div>
-              <div class="item-price">$23.99</div>
-            </div>
-          </div>
-
-          <div class="section-highlight">
-            <div class="brand">Heart of the Earth</div>
-            <div class="earth-row">
-              <div class="text">
-                <div style="display:flex;align-items:center;gap:10px;">
-                  <span class="earth-badge"></span>
-                  <span>Quinoa &amp; black bean burger topped with roasted garlic aioli, arugula, tomato &amp; red onion.</span>
+        <main>
+          <div class="board-grid">
+            <section class="panel" aria-labelledby="brand-title">
+              <div class="brand-wrap">
+                <div class="brand-name" id="brand-title">
+                  <div class="heart"><span>Heart</span>N<span>Soul</span></div>
+                  <div class="burgers">BURGERS</div>
                 </div>
-                <div style="margin-top:8px;"><strong>Any burger can be substituted</strong> with the Heart of the Earth patty.</div>
+                <div aria-hidden="true">
+                  <div class="heart-shape"></div>
+                </div>
               </div>
-              <div class="item-price" style="font-size:1.1rem;">$13.99</div>
-            </div>
-          </div>
 
-          <div class="signature-drinks">
-            <div class="section-head">
-              <span class="tiny-heart"></span>
-              <span>Signature Drinks</span>
-            </div>
+              <div class="brand-signoff" aria-label="Brand tagline">
+                <span>Made With Heart</span>
+                <div class="line" aria-hidden="true"></div>
+                <span>Fueled by the Soul</span>
+              </div>
 
-            <div class="drink-grid">
-              <div>
-                <div class="drink-item">
-                  <div style="display:flex;align-items:center;gap:10px;">
-                    <div class="bottle-shape"></div>
+              <section class="menu-section" id="menu" aria-labelledby="favorites-heading">
+                <h2 class="section-head" id="favorites-heading">
+                  <span class="tiny-heart" aria-hidden="true"></span>
+                  <span>Heart Favorites</span>
+                </h2>
+
+                <ul class="menu-list" aria-label="Favorite menu items">
+                  <li class="menu-item">
                     <div>
-                      <div class="drink-label">Fresa Heart</div>
-                      <div class="drink-mini">Strawberry Hibiscus<br>Lemonade with bright citrus and soulful flavor.</div>
+                      <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Jr. Heart Combo</div>
+                      <div class="description">Single Jr. Heart smashburger, Soul Fries &amp; drink</div>
                     </div>
-                  </div>
-                  <div class="drink-price">$5.99</div>
-                </div>
-              </div>
+                    <div class="item-price" aria-label="Price $7.99">$7.99</div>
+                  </li>
 
-              <div>
-                <div class="drink-item">
-                  <div style="display:flex;align-items:center;gap:10px;">
-                    <div class="bottle-shape gold"></div>
+                  <li class="menu-item">
                     <div>
-                      <div class="drink-label">Golden Heart</div>
-                      <div class="drink-mini">Pineapple Ginger<br>Lemonade with fresh citrus and a hint of spice.</div>
+                      <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Single Heart</div>
                     </div>
-                  </div>
-                  <div class="drink-price">$5.99</div>
+                    <div class="item-price" aria-label="Price $9.99">$9.99</div>
+                  </li>
+
+                  <li class="menu-item">
+                    <div>
+                      <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Heart Combo</div>
+                      <div class="description">Single Heart, Soul Fries &amp; drink</div>
+                    </div>
+                    <div class="item-price" aria-label="Price $15.99">$15.99</div>
+                  </li>
+
+                  <li class="menu-item">
+                    <div>
+                      <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Double Heart</div>
+                      <div class="description">Double smashburger</div>
+                    </div>
+                    <div class="item-price" aria-label="Price $13.99">$13.99</div>
+                  </li>
+
+                  <li class="menu-item">
+                    <div>
+                      <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Double Heart Combo</div>
+                      <div class="description">Double Heart, Soul Fries &amp; drink</div>
+                    </div>
+                    <div class="item-price" aria-label="Price $19.99">$19.99</div>
+                  </li>
+                </ul>
+              </section>
+
+              <section class="menu-section" aria-labelledby="sides-heading" style="margin-top: 18px;">
+                <h2 class="section-head" id="sides-heading">
+                  <span class="tiny-heart" aria-hidden="true"></span>
+                  <span>Sides</span>
+                </h2>
+
+                <ul class="menu-list" aria-label="Side menu items">
+                  <li class="menu-item">
+                    <div>
+                      <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Soul Fries</div>
+                      <div class="description">Fresh-cut fries tossed in our signature Spirit Seasoning.</div>
+                    </div>
+                    <div class="item-price" aria-label="Price $4.99">$4.99</div>
+                  </li>
+                </ul>
+              </section>
+            </section>
+
+            <aside class="panel" aria-label="Value menu and contact information">
+              <div class="combo-box" id="combos">
+                <div class="combo-header">
+                  <span class="combo-heart" aria-hidden="true"></span>
+                  <span>2 Heart Combos</span>
+                </div>
+
+                <div class="combo-price">FOR $25</div>
+                <div class="combo-sub">Best Value</div>
+                <div class="combo-includes">Includes:</div>
+                <ul class="combo-list">
+                  <li>2 Single Heart Burgers</li>
+                  <li>2 Soul Fries</li>
+                  <li>2 Signature Drinks</li>
+                </ul>
+
+                <div class="combo-note">Good Food.<br>Real Soul.</div>
+
+                <div class="combo-visuals" aria-hidden="true">
+                  <div class="drink-bottle"></div>
+                  <div class="drink-bottle"></div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="follow-wrap">
-            <div class="follow-text">Follow Us</div>
-            <div class="socials">
-              <span class="social-dot">f</span>
-              <span class="social-dot">◎</span>
-              <span class="social-dot">◎</span>
-            </div>
-          </div>
+              <section class="menu-section" aria-labelledby="signature-hearts-heading">
+                <h2 class="section-head" id="signature-hearts-heading">
+                  <span class="tiny-heart" aria-hidden="true"></span>
+                  <span>Signature Hearts</span>
+                </h2>
 
-          <div class="bottom-tag">Good Food.<br>Real Soul.</div>
-        </div>
+                <ul class="menu-list" aria-label="Signature hearts">
+                  <li class="menu-item">
+                    <div>
+                      <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Diablo Heart</div>
+                      <div class="description">Double smashburger with jalapeño avocado Boursin spread, 3 pepper gouda, fried jalapeños, lettuce &amp; tomato.</div>
+                    </div>
+                    <div class="item-price" aria-label="Price $16.99">$16.99</div>
+                  </li>
+
+                  <li class="menu-item">
+                    <div>
+                      <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Diablo Combo</div>
+                      <div class="description">Includes Soul Fries &amp; drink</div>
+                    </div>
+                    <div class="item-price" aria-label="Price $22.99">$22.99</div>
+                  </li>
+
+                  <li class="menu-item">
+                    <div>
+                      <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Smokey Heart</div>
+                      <div class="description">Double smashburger topped with beef bacon, smoked cheddar, caramelized onions &amp; bourbon BBQ.</div>
+                    </div>
+                    <div class="item-price" aria-label="Price $17.99">$17.99</div>
+                  </li>
+
+                  <li class="menu-item">
+                    <div>
+                      <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Smokey Combo</div>
+                      <div class="description">Includes Soul Fries &amp; drink</div>
+                    </div>
+                    <div class="item-price" aria-label="Price $23.99">$23.99</div>
+                  </li>
+                </ul>
+              </section>
+
+              <section class="section-highlight" aria-labelledby="earth-heading">
+                <div class="brand" id="earth-heading">Heart of the Earth</div>
+                <div class="earth-row">
+                  <div class="text">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <span class="earth-badge" aria-hidden="true"></span>
+                      <span>Quinoa &amp; black bean burger topped with roasted garlic aioli, arugula, tomato &amp; red onion.</span>
+                    </div>
+                    <div style="margin-top:8px;"><strong>Any burger can be substituted</strong> with the Heart of the Earth patty.</div>
+                  </div>
+                  <div class="item-price" style="font-size:1.1rem;" aria-label="Price $13.99">$13.99</div>
+                </div>
+              </section>
+
+              <section class="signature-drinks" id="drinks" aria-labelledby="drinks-heading">
+                <h2 class="section-head" id="drinks-heading">
+                  <span class="tiny-heart" aria-hidden="true"></span>
+                  <span>Signature Drinks</span>
+                </h2>
+
+                <div class="drink-grid">
+                  <article>
+                    <div class="drink-item">
+                      <div style="display:flex;align-items:center;gap:10px;">
+                        <div class="bottle-shape" aria-hidden="true"></div>
+                        <div>
+                          <div class="drink-label">Fresa Heart</div>
+                          <div class="drink-mini">Strawberry Hibiscus<br>Lemonade with bright citrus and soulful flavor.</div>
+                        </div>
+                      </div>
+                      <div class="drink-price" aria-label="Price $5.99">$5.99</div>
+                    </div>
+                  </article>
+
+                  <article>
+                    <div class="drink-item">
+                      <div style="display:flex;align-items:center;gap:10px;">
+                        <div class="bottle-shape gold" aria-hidden="true"></div>
+                        <div>
+                          <div class="drink-label">Golden Heart</div>
+                          <div class="drink-mini">Pineapple Ginger<br>Lemonade with fresh citrus and a hint of spice.</div>
+                        </div>
+                      </div>
+                      <div class="drink-price" aria-label="Price $5.99">$5.99</div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <section class="contact-card" id="visit" aria-labelledby="visit-heading">
+                <h2 class="section-head" id="visit-heading">
+                  <span class="tiny-heart" aria-hidden="true"></span>
+                  <span>Visit Us</span>
+                </h2>
+
+                <div class="contact-row">
+                  <div class="info-block">
+                    <span class="info-label">Address</span>
+                    <div class="info-value">123 Soul Street<br>Neighborhood, TX</div>
+                  </div>
+
+                  <div class="info-block">
+                    <span class="info-label">Hours</span>
+                    <div class="info-value">Tue–Sun<br>11:00 AM – 9:00 PM</div>
+                  </div>
+
+                  <div class="info-block">
+                    <span class="info-label">Contact</span>
+                    <div class="info-value"><a href="tel:+15551234567">(555) 123-4567</a><br><a href="mailto:hello@heartnsoulburgers.com">hello@heartnsoulburgers.com</a></div>
+                  </div>
+                </div>
+              </section>
+
+              <div class="follow-wrap">
+                <div class="follow-text">Follow Us</div>
+                <div class="socials" aria-label="Social links">
+                  <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Follow us on Facebook"><span class="social-dot">f</span></a>
+                  <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Follow us on Instagram"><span class="social-dot">◎</span></a>
+                  <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="Follow us on X"><span class="social-dot">X</span></a>
+                </div>
+              </div>
+
+              <div class="bottom-tag">Good Food.<br>Real Soul.</div>
+            </aside>
+          </div>
+        </main>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
