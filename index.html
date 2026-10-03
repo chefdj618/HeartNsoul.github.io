@@ -10,22 +10,22 @@
     <title>Heart N Soul Burgers</title>
     <style>
       :root {
-        --bg: #0d0909;
-        --bg-2: #171111;
-        --panel: #171212;
-        --panel-2: #1d1515;
-        --red: #e62c2c;
-        --red-deep: #b81225;
-        --red-soft: rgba(255, 90, 90, 0.15);
-        --cream: #f6efe8;
-        --gold: #f4cf77;
-        --green: #27c77e;
-        --green-dark: #12392b;
-        --text: #f8f2ec;
-        --muted: #d7c9bc;
-        --line: rgba(255, 90, 90, 0.65);
-        --shadow: rgba(255, 55, 55, 0.28);
-        --shadow-soft: rgba(0, 0, 0, 0.2);
+        --bg: #050505;
+        --bg-2: #0a0a0a;
+        --panel: #0f0f0f;
+        --panel-2: #131313;
+        --red: #d62e2e;
+        --red-deep: #8f1a1a;
+        --red-soft: rgba(214, 46, 46, 0.12);
+        --cream: #f5f1ed;
+        --gold: #d4b65f;
+        --green: #2a8f6b;
+        --green-dark: #0f2920;
+        --text: #e8e2da;
+        --muted: #b8a899;
+        --line: rgba(214, 46, 46, 0.55);
+        --shadow: rgba(214, 46, 46, 0.22);
+        --shadow-soft: rgba(0, 0, 0, 0.4);
       }
 
       * {
@@ -38,8 +38,8 @@
 
       body {
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: #0b0909;
+        font-family: 'Trebuchet MS', Arial, sans-serif;
+        background: #030303;
         color: var(--text);
         letter-spacing: 0.02em;
       }
@@ -58,19 +58,19 @@
       .page {
         max-width: 1180px;
         margin: 0 auto;
-        padding: 24px 16px 48px;
+        padding: 32px 20px 56px;
         min-height: 100vh;
-        background: linear-gradient(180deg, #111010 0%, #0d0b0b 100%);
+        background: linear-gradient(180deg, #040404 0%, #020202 100%);
       }
 
       .menu-board {
         background:
-          radial-gradient(circle at 15% 15%, rgba(255, 80, 80, 0.09), transparent 20%),
-          radial-gradient(circle at 75% 20%, rgba(255, 80, 80, 0.08), transparent 18%),
-          #141111;
-        border: 3px solid rgba(255, 76, 76, 0.72);
-        box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1), 0 0 35px rgba(255, 60, 60, 0.15);
-        padding: 14px;
+          radial-gradient(circle at 15% 15%, rgba(214, 46, 46, 0.06), transparent 25%),
+          radial-gradient(circle at 75% 20%, rgba(214, 46, 46, 0.05), transparent 22%),
+          #0a0a0a;
+        border: 2px solid rgba(214, 46, 46, 0.5);
+        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.8), 0 0 40px rgba(214, 46, 46, 0.1);
+        padding: 20px;
         overflow: hidden;
       }
 
@@ -78,67 +78,70 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 16px;
-        padding: 10px 8px 18px;
-        border-bottom: 2px solid rgba(255, 90, 90, 0.5);
-        margin-bottom: 16px;
+        gap: 20px;
+        padding: 12px 10px 20px;
+        border-bottom: 1px solid rgba(214, 46, 46, 0.35);
+        margin-bottom: 20px;
       }
 
       .brand-lockup {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 14px;
       }
 
       .brand-mark {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         transform: rotate(45deg);
         background: var(--red);
         position: relative;
-        box-shadow: 0 0 12px rgba(255, 90, 90, 0.2);
+        box-shadow: 0 0 8px rgba(214, 46, 46, 0.15);
       }
 
       .brand-mark::before,
       .brand-mark::after {
         content: "";
         position: absolute;
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         background: var(--red);
         border-radius: 50%;
       }
 
-      .brand-mark::before { left: -10px; top: 0; }
-      .brand-mark::after { left: 0; top: -10px; }
+      .brand-mark::before { left: -9px; top: 0; }
+      .brand-mark::after { left: 0; top: -9px; }
 
       .brand-name-inline {
         color: var(--cream);
         font-weight: 900;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+        font-size: 0.85rem;
+        word-spacing: 0.05em;
       }
 
       .main-nav {
         display: flex;
         align-items: center;
-        gap: 18px;
+        gap: 24px;
         flex-wrap: wrap;
       }
 
       .main-nav a {
         color: var(--muted);
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-size: 0.75rem;
-        font-weight: 800;
+        letter-spacing: 0.1em;
+        font-size: 0.7rem;
+        font-weight: 700;
         transition: color 0.2s ease;
+        border-bottom: 1px solid transparent;
       }
 
       .main-nav a:hover,
       .main-nav a:focus-visible {
         color: var(--red);
+        border-bottom-color: var(--red);
       }
 
       .order-btn,
@@ -146,65 +149,68 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border: 2px solid rgba(255, 90, 90, 0.8);
-        background: linear-gradient(180deg, #f43d3d 0%, #b6121d 100%);
+        border: 1px solid var(--red);
+        background: linear-gradient(180deg, #b81a1a 0%, #8f1515 100%);
         color: var(--cream);
-        font-weight: 900;
+        font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        padding: 10px 18px;
+        letter-spacing: 0.1em;
+        padding: 10px 20px;
+        font-size: 0.7rem;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
-        box-shadow: 0 8px 18px rgba(229, 45, 45, 0.2);
+        box-shadow: 0 6px 16px rgba(214, 46, 46, 0.15);
       }
 
       .order-btn:hover,
       .order-btn:focus-visible,
       .cta-btn:hover,
       .cta-btn:focus-visible {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 20px rgba(229, 45, 45, 0.26);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(214, 46, 46, 0.2);
       }
 
       .board-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 14px;
+        gap: 16px;
       }
 
       .panel {
-        background: rgba(22, 18, 18, 0.96);
-        border: 2px solid rgba(255, 80, 80, 0.35);
-        padding: 14px 14px 10px;
+        background: rgba(10, 10, 10, 0.95);
+        border: 1px solid rgba(214, 46, 46, 0.3);
+        padding: 18px;
         position: relative;
-        min-height: 240px;
+        min-height: auto;
       }
 
       .brand-wrap {
         display: grid;
-        grid-template-columns: 1.4fr 1fr;
-        gap: 14px;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        align-items: center;
+        text-align: center;
       }
 
       .brand-name {
         position: relative;
         font-weight: 900;
         font-style: italic;
-        color: #f4f0eb;
+        color: var(--cream);
         text-transform: none;
-        line-height: 0.88;
-        text-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+        line-height: 0.95;
+        text-shadow: 0 0 20px rgba(214, 46, 46, 0.15);
       }
 
       .brand-name .heart {
         display: block;
-        font-size: clamp(3.2rem, 5vw, 5rem);
+        font-size: clamp(2.8rem, 6vw, 4.2rem);
         font-family: Georgia, serif;
-        color: #f3eee9;
-        text-shadow: 0 0 18px rgba(255, 70, 70, 0.18);
-        letter-spacing: -0.06em;
-        transform: skewX(-10deg);
+        color: var(--cream);
+        text-shadow: 0 0 15px rgba(214, 46, 46, 0.15);
+        letter-spacing: -0.08em;
         position: relative;
         z-index: 1;
+        margin: 0;
       }
 
       .brand-name .heart span {
@@ -213,230 +219,231 @@
       }
 
       .brand-name .burgers {
-        font-size: clamp(2rem, 4vw, 2.9rem);
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
         color: var(--red);
         letter-spacing: -0.04em;
         position: relative;
-        left: -2px;
+        margin: -8px 0 0 0;
+        font-weight: 900;
+        text-shadow: 0 0 10px rgba(214, 46, 46, 0.1);
       }
 
       .heart-shape {
-        position: relative;
-        width: 130px;
-        height: 90px;
-        margin: 12px auto 0 auto;
-        transform: rotate(-10deg);
-        filter: drop-shadow(0 0 10px rgba(255, 70, 70, 0.25));
-      }
-
-      .heart-shape::before,
-      .heart-shape::after {
-        content: "";
-        position: absolute;
-        width: 52px;
-        height: 78px;
-        background: var(--red);
-        border-radius: 50px 50px 0 0;
-        top: 0;
-      }
-
-      .heart-shape::before {
-        left: 26px;
-        transform: rotate(-45deg);
-        transform-origin: 0 100%;
-      }
-
-      .heart-shape::after {
-        left: 0;
-        transform: rotate(45deg);
-        transform-origin: 100% 100%;
-      }
-
-      .heart-mark {
-        position: absolute;
-        width: 32px;
-        height: 32px;
-        background: var(--red);
-        transform: rotate(45deg);
-        border-radius: 8px;
-        left: 50%;
-        top: 50%;
-        margin-left: -16px;
-        margin-top: -16px;
-        box-shadow: 0 0 10px rgba(255, 70, 70, 0.18);
+        display: none;
       }
 
       .brand-signoff {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        gap: 8px;
-        margin-top: 12px;
-        font-size: 0.92rem;
+        gap: 12px;
+        margin-top: 10px;
+        font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.12em;
-        color: var(--red);
-        font-weight: 800;
+        color: var(--muted);
+        font-weight: 700;
       }
 
       .brand-signoff .line {
         flex: 1;
-        height: 4px;
-        background: linear-gradient(90deg, var(--red), transparent);
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--muted), transparent);
         border-radius: 999px;
+        max-width: 80px;
       }
 
       .combo-box {
-        background: linear-gradient(180deg, #1e1b1a 0%, #100b0b 100%);
-        border: 2px solid rgba(255, 57, 57, 0.8);
-        padding: 10px 10px 8px;
+        background: linear-gradient(180deg, #1a0f0f 0%, #0d0707 100%);
+        border: 2px solid rgba(214, 46, 46, 0.6);
+        padding: 16px;
         position: relative;
-        min-height: 200px;
+        margin-bottom: 16px;
+        box-shadow: 0 0 20px rgba(214, 46, 46, 0.15);
       }
 
       .combo-header {
         display: flex;
         align-items: center;
-        gap: 14px;
-        margin-bottom: 10px;
-        color: var(--red);
-        font-weight: 900;
+        gap: 12px;
+        margin-bottom: 12px;
+        color: var(--text);
+        font-weight: 800;
         text-transform: uppercase;
-        font-size: 1.25rem;
-        letter-spacing: 0.04em;
+        font-size: 1rem;
+        letter-spacing: 0.08em;
       }
 
       .combo-heart {
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         background: var(--red);
         transform: rotate(45deg);
         position: relative;
         display: inline-block;
-        margin-left: 6px;
+        margin-left: 4px;
       }
 
       .combo-heart::before,
       .combo-heart::after {
         content: "";
         position: absolute;
-        width: 20px;
-        height: 20px;
+        width: 16px;
+        height: 16px;
         background: var(--red);
         border-radius: 50%;
       }
 
-      .combo-heart::before { left: -10px; top: 0; }
-      .combo-heart::after { left: 0; top: -10px; }
+      .combo-heart::before { left: -8px; top: 0; }
+      .combo-heart::after { left: 0; top: -8px; }
 
       .combo-price {
-        font-size: clamp(2.3rem, 4vw, 2.8rem);
+        font-size: clamp(2rem, 4vw, 2.6rem);
         font-weight: 900;
         color: var(--red);
         line-height: 1;
         display: inline-block;
         letter-spacing: -0.05em;
         margin: 0 0 6px;
-        text-shadow: 0 0 12px rgba(255, 60, 60, 0.2);
+        text-shadow: 0 0 10px rgba(214, 46, 46, 0.15);
       }
 
       .combo-sub {
         color: var(--gold);
         text-transform: uppercase;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         font-weight: 800;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
         margin-bottom: 8px;
+        display: block;
       }
 
       .combo-includes {
-        font-size: 0.75rem;
+        font-size: 0.68rem;
         text-transform: uppercase;
-        color: var(--cream);
-        opacity: 0.9;
-        letter-spacing: 0.06em;
-        margin-bottom: 6px;
+        color: var(--red);
+        opacity: 0.95;
+        letter-spacing: 0.1em;
+        margin: 10px 0 6px 0;
+        font-weight: 800;
       }
 
       .combo-list {
         margin: 0;
-        padding-left: 18px;
-        color: var(--cream);
-        font-size: 0.88rem;
+        padding-left: 20px;
+        color: var(--text);
+        font-size: 0.8rem;
         list-style: disc;
+        opacity: 0.9;
+      }
+
+      .combo-list li {
+        margin-bottom: 4px;
       }
 
       .combo-note {
         margin-top: 10px;
         color: var(--red);
-        font-size: 0.88rem;
+        font-size: 0.78rem;
         text-transform: uppercase;
         font-weight: 900;
-        line-height: 1.2;
+        line-height: 1.4;
       }
 
       .combo-visuals {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        gap: 16px;
-        margin-top: 8px;
+        gap: 12px;
+        margin-top: 10px;
       }
 
       .drink-bottle {
-        width: 62px;
-        height: 110px;
-        background: linear-gradient(180deg, #9a062d 0%, #6b0d1f 100%);
-        border-radius: 16px 16px 10px 10px;
+        width: 50px;
+        height: 90px;
+        background: linear-gradient(180deg, #7a0a1a 0%, #500a15 100%);
+        border-radius: 12px 12px 6px 6px;
         position: relative;
-        border: 2px solid rgba(255, 150, 150, 0.6);
-        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 150, 150, 0.3);
+        box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.04);
       }
 
       .drink-bottle:nth-child(2) {
-        background: linear-gradient(180deg, #d7b36d 0%, #a56f2f 100%);
+        background: linear-gradient(180deg, #b8935f 0%, #8a6d3b 100%);
       }
 
       .drink-bottle::before {
         content: "";
         position: absolute;
-        top: -10px;
-        left: 10px;
-        right: 10px;
-        height: 12px;
-        background: rgba(62, 17, 17, 0.75);
-        border-radius: 12px 12px 4px 4px;
+        top: -6px;
+        left: 8px;
+        right: 8px;
+        height: 8px;
+        background: rgba(40, 10, 10, 0.7);
+        border-radius: 8px 8px 2px 2px;
       }
 
       .drink-bottle::after {
         content: "";
         position: absolute;
-        inset: 12px 8px 8px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent 60%);
-        border-radius: 10px;
+        inset: 8px 4px 4px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent 70%);
+        border-radius: 6px;
       }
 
       .menu-section {
-        margin-top: 10px;
-        border-top: 2px solid rgba(255, 90, 90, 0.5);
+        margin-top: 14px;
+        border-top: 1px solid rgba(214, 46, 46, 0.25);
         padding-top: 12px;
+      }
+
+      .menu-section.first-section {
+        border-top: none;
+        margin-top: 0;
+        padding-top: 0;
       }
 
       .section-head {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         text-transform: uppercase;
         font-weight: 900;
-        color: var(--red);
-        font-size: 1.1rem;
-        margin-bottom: 8px;
-        letter-spacing: 0.06em;
+        color: var(--text);
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+        letter-spacing: 0.1em;
+        position: relative;
+        padding: 8px 0;
+      }
+
+      .section-head::before {
+        content: "";
+        position: absolute;
+        left: -18px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 14px;
+        height: 14px;
+        background: var(--red);
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+
+      .section-head::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(214, 46, 46, 0.4), transparent);
+        z-index: -1;
       }
 
       .tiny-heart {
-        width: 16px;
-        height: 16px;
+        width: 12px;
+        height: 12px;
         background: var(--red);
         transform: rotate(45deg);
         display: inline-block;
@@ -447,14 +454,14 @@
       .tiny-heart::after {
         content: "";
         position: absolute;
-        width: 16px;
-        height: 16px;
+        width: 12px;
+        height: 12px;
         background: var(--red);
         border-radius: 50%;
       }
 
-      .tiny-heart::before { left: -8px; top: 0; }
-      .tiny-heart::after { left: 0; top: -8px; }
+      .tiny-heart::before { left: -6px; top: 0; }
+      .tiny-heart::after { left: 0; top: -6px; }
 
       .menu-item {
         display: grid;
@@ -462,8 +469,9 @@
         gap: 10px;
         align-items: start;
         margin: 12px 0;
-        padding-bottom: 6px;
-        border-bottom: 1px dashed rgba(255, 80, 80, 0.4);
+        padding-bottom: 8px;
+        padding-left: 16px;
+        border-bottom: 1px dotted rgba(214, 46, 46, 0.2);
       }
 
       .menu-item:last-child {
@@ -473,15 +481,16 @@
       .item-name {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         color: var(--cream);
         font-weight: 700;
-        font-size: 1rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
       }
 
       .mini-heart {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
         background: var(--red);
         transform: rotate(45deg);
         display: inline-block;
@@ -493,35 +502,89 @@
       .mini-heart::after {
         content: "";
         position: absolute;
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
         background: var(--red);
       }
 
-      .mini-heart::before { left: -5px; top: 0; }
-      .mini-heart::after { left: 0; top: -5px; }
+      .mini-heart::before { left: -4px; top: 0; }
+      .mini-heart::after { left: 0; top: -4px; }
 
       .item-price {
         color: var(--red);
         font-weight: 900;
-        font-size: 1rem;
+        font-size: 0.9rem;
         white-space: nowrap;
       }
 
       .description {
-        margin-top: 4px;
-        color: var(--muted);
-        font-size: 0.82rem;
-        line-height: 1.45;
+        margin-top: 3px;
+        color: var(--gold);
+        font-size: 0.75rem;
+        line-height: 1.4;
         max-width: 420px;
+        opacity: 0.85;
+        font-weight: 600;
+      }
+
+      .item-label {
+        display: inline-block;
+        color: var(--red);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 900;
+        margin-top: 2px;
+        margin-left: 16px;
+      }
+
+      .burger-image-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .burger-image-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .burger-image-item {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(214, 46, 46, 0.3);
+        background: rgba(10, 10, 10, 0.8);
+      }
+
+      .burger-image-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .burger-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.9));
+        color: var(--red);
+        font-weight: 900;
+        text-transform: uppercase;
+        padding: 12px 8px 8px;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-align: center;
       }
 
       .section-highlight {
-        background: rgba(16, 25, 18, 0.9);
-        border: 2px solid rgba(41, 209, 127, 0.88);
-        color: var(--cream);
-        padding: 14px 16px 12px;
+        background: rgba(8, 20, 15, 0.7);
+        border: 1px solid rgba(42, 143, 107, 0.6);
+        color: var(--text);
+        padding: 14px 16px;
         margin-top: 14px;
         position: relative;
       }
@@ -532,24 +595,29 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
         margin-bottom: 10px;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .earth-row {
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 12px;
-        align-items: center;
+        align-items: start;
       }
 
       .earth-badge {
         display: inline-block;
-        width: 22px;
-        height: 22px;
+        width: 18px;
+        height: 18px;
         border-radius: 50%;
-        background: radial-gradient(circle at 35% 35%, #b8d7a7 0%, #2d8f63 30%, #163a26 100%);
-        border: 2px solid rgba(255,255,255,0.5);
+        background: radial-gradient(circle at 35% 35%, #9ab588 0%, #238a5f 40%, #0d2b1f 100%);
+        border: 1px solid rgba(255,255,255,0.3);
         position: relative;
-        box-shadow: inset 0 0 8px rgba(255,255,255,0.3);
+        box-shadow: inset 0 0 6px rgba(255,255,255,0.2);
+        flex-shrink: 0;
       }
 
       .earth-badge::before {
@@ -557,13 +625,13 @@
         position: absolute;
         inset: 0;
         border-radius: 50%;
-        background: linear-gradient(90deg, transparent 45%, rgba(255,255,255,0.28) 50%, transparent 55%);
+        background: linear-gradient(90deg, transparent 45%, rgba(255,255,255,0.15) 50%, transparent 55%);
       }
 
       .section-highlight .text {
-        color: var(--cream);
-        line-height: 1.45;
-        font-size: 0.92rem;
+        color: var(--text);
+        line-height: 1.4;
+        font-size: 0.82rem;
       }
 
       .section-highlight .text strong {
@@ -578,7 +646,7 @@
       .drink-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 24px;
+        gap: 16px;
         margin-top: 8px;
       }
 
@@ -586,12 +654,12 @@
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 8px;
-        align-items: center;
-        margin: 10px 0;
+        align-items: start;
+        margin: 8px 0;
       }
 
       .drink-label {
-        font-size: 0.88rem;
+        font-size: 0.78rem;
         color: var(--cream);
         font-weight: 700;
         text-transform: uppercase;
@@ -599,84 +667,86 @@
 
       .drink-price {
         color: var(--red);
-        font-weight: 800;
+        font-weight: 900;
         white-space: nowrap;
+        font-size: 0.85rem;
       }
 
       .drink-mini {
-        margin-top: 8px;
+        margin-top: 4px;
         display: flex;
         justify-content: space-between;
         gap: 8px;
         color: var(--muted);
-        font-size: 0.76rem;
-        line-height: 1.4;
+        font-size: 0.68rem;
+        line-height: 1.3;
+        opacity: 0.8;
       }
 
       .bottle-shape {
-        width: 52px;
-        height: 90px;
-        border-radius: 12px 12px 10px 10px;
+        width: 44px;
+        height: 75px;
+        border-radius: 8px 8px 6px 6px;
         position: relative;
-        background: linear-gradient(180deg, #a50d28 0%, #5e0d20 100%);
-        border: 2px solid rgba(255,255,255,0.2);
+        background: linear-gradient(180deg, #8a0a1e 0%, #520810 100%);
+        border: 1px solid rgba(255,255,255,0.15);
         flex-shrink: 0;
       }
 
       .bottle-shape::before {
         content: "";
         position: absolute;
-        left: 12px;
-        right: 12px;
-        top: -10px;
-        height: 12px;
-        background: rgba(80, 20, 20, 0.8);
-        border-radius: 10px 10px 4px 4px;
+        left: 8px;
+        right: 8px;
+        top: -6px;
+        height: 8px;
+        background: rgba(60, 10, 10, 0.6);
+        border-radius: 6px 6px 2px 2px;
       }
 
       .bottle-shape.gold {
-        background: linear-gradient(180deg, #f2d783 0%, #c68835 100%);
+        background: linear-gradient(180deg, #a88050 0%, #7a5d35 100%);
       }
 
       .contact-card {
-        background: rgba(21, 15, 15, 0.88);
-        border: 2px solid rgba(255, 80, 80, 0.35);
-        padding: 14px;
+        background: rgba(8, 8, 8, 0.9);
+        border: 1px solid rgba(214, 46, 46, 0.3);
+        padding: 16px;
         margin-top: 14px;
       }
 
       .contact-row {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
+        gap: 14px;
       }
 
       .info-block {
-        border: 1px solid rgba(255, 90, 90, 0.28);
-        background: rgba(255, 255, 255, 0.02);
-        padding: 10px 12px;
+        border: 1px solid rgba(214, 46, 46, 0.2);
+        background: rgba(255, 255, 255, 0.01);
+        padding: 12px 14px;
       }
 
       .info-label {
         display: block;
         color: var(--gold);
-        font-size: 0.72rem;
+        font-size: 0.62rem;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
         font-weight: 800;
         margin-bottom: 6px;
       }
 
       .info-value {
         color: var(--cream);
-        font-size: 0.92rem;
-        line-height: 1.45;
+        font-size: 0.82rem;
+        line-height: 1.5;
       }
 
       .follow-wrap {
-        margin-top: 16px;
-        border-top: 2px solid rgba(255, 90, 90, 0.45);
-        padding-top: 12px;
+        margin-top: 14px;
+        border-top: 1px solid rgba(214, 46, 46, 0.25);
+        padding-top: 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -688,41 +758,41 @@
         color: var(--red);
         text-transform: uppercase;
         font-weight: 900;
-        letter-spacing: 0.08em;
-        font-size: 0.95rem;
+        letter-spacing: 0.1em;
+        font-size: 0.8rem;
       }
 
       .socials {
         display: flex;
-        gap: 8px;
+        gap: 6px;
         align-items: center;
         color: var(--cream);
-        font-size: 1.15rem;
+        font-size: 0.95rem;
       }
 
       .social-dot {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         border-radius: 50%;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.18);
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.12);
         color: var(--red);
         font-weight: 900;
-        font-size: 0.7rem;
+        font-size: 0.6rem;
       }
 
       .bottom-tag {
         margin-top: 10px;
-        text-align: right;
+        text-align: center;
         color: var(--red);
         text-transform: uppercase;
         font-weight: 900;
-        letter-spacing: 0.08em;
-        font-size: 1.14rem;
-        line-height: 1.2;
+        letter-spacing: 0.1em;
+        font-size: 0.95rem;
+        line-height: 1.3;
       }
 
       .sr-only {
@@ -740,7 +810,8 @@
         .board-grid { grid-template-columns: 1fr; }
         .brand-wrap { grid-template-columns: 1fr; }
         .drink-grid { grid-template-columns: 1fr; }
-        .page { padding: 12px; }
+        .burger-image-row { grid-template-columns: 1fr; }
+        .page { padding: 20px; }
         .site-header {
           flex-direction: column;
           align-items: flex-start;
@@ -763,12 +834,12 @@
         }
         .brand-signoff {
           flex-direction: column;
-          align-items: flex-start;
+          align-items: center;
           gap: 6px;
         }
         .brand-signoff .line {
-          width: 100%;
-          height: 3px;
+          width: 80px;
+          height: 1px;
         }
       }
     </style>
@@ -800,9 +871,6 @@
                   <div class="heart"><span>Heart</span>N<span>Soul</span></div>
                   <div class="burgers">BURGERS</div>
                 </div>
-                <div aria-hidden="true">
-                  <div class="heart-shape"></div>
-                </div>
               </div>
 
               <div class="brand-signoff" aria-label="Brand tagline">
@@ -811,9 +879,8 @@
                 <span>Fueled by the Soul</span>
               </div>
 
-              <section class="menu-section" id="menu" aria-labelledby="favorites-heading">
+              <section class="menu-section first-section" id="menu" aria-labelledby="favorites-heading">
                 <h2 class="section-head" id="favorites-heading">
-                  <span class="tiny-heart" aria-hidden="true"></span>
                   <span>Heart Favorites</span>
                 </h2>
 
@@ -829,6 +896,7 @@
                   <li class="menu-item">
                     <div>
                       <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Single Heart</div>
+                      <div class="description">Classic single smashburger</div>
                     </div>
                     <div class="item-price" aria-label="Price $9.99">$9.99</div>
                   </li>
@@ -845,6 +913,7 @@
                     <div>
                       <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Double Heart</div>
                       <div class="description">Double smashburger</div>
+                      <div class="item-label">⭐ CUSTOMER FAVORITE</div>
                     </div>
                     <div class="item-price" aria-label="Price $13.99">$13.99</div>
                   </li>
@@ -859,9 +928,8 @@
                 </ul>
               </section>
 
-              <section class="menu-section" aria-labelledby="sides-heading" style="margin-top: 18px;">
+              <section class="menu-section" aria-labelledby="sides-heading">
                 <h2 class="section-head" id="sides-heading">
-                  <span class="tiny-heart" aria-hidden="true"></span>
                   <span>Sides</span>
                 </h2>
 
@@ -893,7 +961,7 @@
                   <li>2 Signature Drinks</li>
                 </ul>
 
-                <div class="combo-note">Good Food.<br>Real Soul.</div>
+                <div class="combo-note">GOOD FOOD. REAL SOUL.</div>
 
                 <div class="combo-visuals" aria-hidden="true">
                   <div class="drink-bottle"></div>
@@ -903,7 +971,6 @@
 
               <section class="menu-section" aria-labelledby="signature-hearts-heading">
                 <h2 class="section-head" id="signature-hearts-heading">
-                  <span class="tiny-heart" aria-hidden="true"></span>
                   <span>Signature Hearts</span>
                 </h2>
 
@@ -912,6 +979,7 @@
                     <div>
                       <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Diablo Heart</div>
                       <div class="description">Double smashburger with jalapeño avocado Boursin spread, 3 pepper gouda, fried jalapeños, lettuce &amp; tomato.</div>
+                      <div class="item-label">🔥 MOST POPULAR</div>
                     </div>
                     <div class="item-price" aria-label="Price $16.99">$16.99</div>
                   </li>
@@ -928,6 +996,7 @@
                     <div>
                       <div class="item-name"><span class="mini-heart" aria-hidden="true"></span> Smokey Heart</div>
                       <div class="description">Double smashburger topped with beef bacon, smoked cheddar, caramelized onions &amp; bourbon BBQ.</div>
+                      <div class="item-label">🌬️ PITMASTER INSPIRED</div>
                     </div>
                     <div class="item-price" aria-label="Price $17.99">$17.99</div>
                   </li>
@@ -942,23 +1011,32 @@
                 </ul>
               </section>
 
+              <div class="burger-image-grid">
+                <div class="burger-image-row">
+                  <div class="burger-image-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a0f0f' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='%23d62e2e' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3EDOUBLE Heart%3C/text%3E%3C/svg%3E" alt="Double Heart burger"/>
+                    <div class="burger-label">Double Heart</div>
+                  </div>
+                  <div class="burger-image-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a0f0f' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='%23d62e2e' text-anchor='middle' dominant-baseline='middle' font-weight='bold'%3EDiablo Heart%3C/text%3E%3C/svg%3E" alt="Diablo Heart burger"/>
+                    <div class="burger-label">Diablo Heart</div>
+                  </div>
+                </div>
+              </div>
+
               <section class="section-highlight" aria-labelledby="earth-heading">
-                <div class="brand" id="earth-heading">Heart of the Earth</div>
+                <div class="brand" id="earth-heading"><span class="earth-badge" aria-hidden="true"></span> Heart of the Earth</div>
                 <div class="earth-row">
                   <div class="text">
-                    <div style="display:flex;align-items:center;gap:10px;">
-                      <span class="earth-badge" aria-hidden="true"></span>
-                      <span>Quinoa &amp; black bean burger topped with roasted garlic aioli, arugula, tomato &amp; red onion.</span>
-                    </div>
+                    <div>Quinoa &amp; black bean burger topped with roasted garlic aioli, arugula, tomato &amp; red onion.</div>
                     <div style="margin-top:8px;"><strong>Any burger can be substituted</strong> with the Heart of the Earth patty.</div>
                   </div>
-                  <div class="item-price" style="font-size:1.1rem;" aria-label="Price $13.99">$13.99</div>
+                  <div class="item-price" style="font-size:1rem;" aria-label="Price $13.99">$13.99</div>
                 </div>
               </section>
 
               <section class="signature-drinks" id="drinks" aria-labelledby="drinks-heading">
                 <h2 class="section-head" id="drinks-heading">
-                  <span class="tiny-heart" aria-hidden="true"></span>
                   <span>Signature Drinks</span>
                 </h2>
 
@@ -969,7 +1047,7 @@
                         <div class="bottle-shape" aria-hidden="true"></div>
                         <div>
                           <div class="drink-label">Fresa Heart</div>
-                          <div class="drink-mini">Strawberry Hibiscus<br>Lemonade with bright citrus and soulful flavor.</div>
+                          <div class="drink-mini">Strawberry Hibiscus Lemonade with bright citrus and soulful flavor.</div>
                         </div>
                       </div>
                       <div class="drink-price" aria-label="Price $5.99">$5.99</div>
@@ -982,7 +1060,7 @@
                         <div class="bottle-shape gold" aria-hidden="true"></div>
                         <div>
                           <div class="drink-label">Golden Heart</div>
-                          <div class="drink-mini">Pineapple Ginger<br>Lemonade with fresh citrus and a hint of spice.</div>
+                          <div class="drink-mini">Pineapple Ginger Lemonade with fresh citrus and a hint of spice.</div>
                         </div>
                       </div>
                       <div class="drink-price" aria-label="Price $5.99">$5.99</div>
@@ -993,38 +1071,39 @@
 
               <section class="contact-card" id="visit" aria-labelledby="visit-heading">
                 <h2 class="section-head" id="visit-heading">
-                  <span class="tiny-heart" aria-hidden="true"></span>
                   <span>Visit Us</span>
                 </h2>
 
                 <div class="contact-row">
-                  <div class="info-block">
-                    <span class="info-label">Address</span>
-                    <div class="info-value">123 Soul Street<br>Neighborhood, TX</div>
-                  </div>
+                  <article class="info-block" aria-labelledby="phone-label">
+                    <span class="info-label" id="phone-label">Phone</span>
+                    <a class="info-value" href="tel:+15551234567" aria-label="Phone number (555) 123-4567">(555) 123-4567</a>
+                  </article>
 
-                  <div class="info-block">
-                    <span class="info-label">Hours</span>
-                    <div class="info-value">Tue–Sun<br>11:00 AM – 9:00 PM</div>
-                  </div>
+                  <article class="info-block" aria-labelledby="address-label">
+                    <span class="info-label" id="address-label">Address</span>
+                    <span class="info-value">123 Soul Street<br />
+                      Heart City, HC 12345</span>
+                  </article>
 
-                  <div class="info-block">
-                    <span class="info-label">Contact</span>
-                    <div class="info-value"><a href="tel:+15551234567">(555) 123-4567</a><br><a href="mailto:hello@heartnsoulburgers.com">hello@heartnsoulburgers.com</a></div>
+                  <article class="info-block" aria-labelledby="hours-label">
+                    <span class="info-label" id="hours-label">Hours</span>
+                    <span class="info-value">Mon–Fri 11am–10pm<br />
+                      Sat–Sun 12pm–11pm</span>
+                  </article>
+                </div>
+
+                <div class="follow-wrap">
+                  <span class="follow-text">Follow Our Soul</span>
+                  <div class="socials" aria-label="Social media links">
+                    <a aria-label="Facebook page" href="https://facebook.com" class="social-dot">f</a>
+                    <a aria-label="Instagram profile" href="https://instagram.com" class="social-dot">📷</a>
+                    <a aria-label="TikTok profile" href="https://tiktok.com" class="social-dot">♫</a>
                   </div>
                 </div>
+
+                <div class="bottom-tag">🔥 FRESH DAILY 🔥</div>
               </section>
-
-              <div class="follow-wrap">
-                <div class="follow-text">Follow Us</div>
-                <div class="socials" aria-label="Social links">
-                  <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Follow us on Facebook"><span class="social-dot">f</span></a>
-                  <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Follow us on Instagram"><span class="social-dot">◎</span></a>
-                  <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="Follow us on X"><span class="social-dot">X</span></a>
-                </div>
-              </div>
-
-              <div class="bottom-tag">Good Food.<br>Real Soul.</div>
             </aside>
           </div>
         </main>
