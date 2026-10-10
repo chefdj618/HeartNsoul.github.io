@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Little Italy - Private Chef Menu</title>
+    <style>
+      :root {
+        --bg: #fff;
+        --ink: #222;
+        --mute: #666;
+        --line: #e3e3e3;
+        --gold: #b87a2e;
+        --panel: #f7f4ef;
+        --shadow: rgba(0, 0, 0, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        height: auto;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.5 "Helvetica Neue", Arial, sans-serif;
+      }
+
+      .wrap {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 32px 20px 60px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 40px;
+      }
+
+      h1 {
+        font-size: 34px;
+        margin: 0 0 6px;
+      }
+
+      h2 {
+        font-size: 22px;
+        margin: 36px 0 4px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+      }
+
+      .intro {
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+      }
+
+      .hero {
+        width: 190px;
+        height: 190px;
+        object-fit: cover;
+        object-position: 50% 45%;
+        border-radius: 14px;
+        flex: none;
+      }
+
+      .intro p {
+        color: var(--mute);
+        margin: 0;
+        max-width: 56ch;
+      }
+
+      .hero-headline {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 190px;
+      }
+
+      .hero-headline .title-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hero-headline .title-row h1 {
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      .hero-headline .title-row .tag {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #d7b97d, #b87a2e);
+        box-shadow: 0 0 0 2px rgba(184,122,46,0.15);
+      }
+
+      .menu-item {
+        margin: 14px 0;
+      }
+
+      .menu-item b {
+        display: block;
+        color: var(--gold);
+        font-weight: 600;
+      }
+
+      .menu-item span {
+        color: var(--mute);
+      }
+
+      aside {
+        position: sticky;
+        top: 20px;
+        align-self: start;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 22px;
+      }
+
+      aside h3 {
+        margin: 0 0 14px;
+        font-size: 20px;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+        gap: 10px;
+      }
+
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .step button {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--line);
+        background: var(--bg);
+        color: var(--ink);
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .step button:hover {
+        background: var(--panel);
+      }
+
+      .step output {
+        min-width: 28px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 18px;
+      }
+
+      .lines {
+        margin: 16px 0;
+        border-top: 1px solid var(--line);
+        padding-top: 10px;
+        font-size: 15px;
+      }
+
+      .lines div {
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 0;
+        gap: 8px;
+      }
+
+      .lines small {
+        color: var(--mute);
+      }
+
+      .total {
+        display: flex;
+        justify-content: space-between;
+        border-top: 2px solid var(--ink);
+        padding-top: 12px;
+        font-weight: 700;
+        font-size: 24px;
+      }
+
+      .note {
+        color: var(--mute);
+        font-size: 14px;
+        margin-top: 10px;
+      }
+
+      label {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        cursor: pointer;
+        margin: 6px 0;
+      }
+
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--gold);
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 2px;
+      }
+
+      @media (max-width: 820px) {
+        .wrap {
+          display: block;
+        }
+
+        aside {
+          position: static;
+          margin-bottom: 24px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .intro {
+          flex-direction: column;
+        }
+
+        .hero {
+          width: 100%;
+          height: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <main>
+        <div class="intro">
+          <img class="hero" src="scampi.jpg" alt="Shrimp scampi over fresh fettuccine with roasted asparagus" />
+          <div class="hero-headline">
+            <div class="title-row">
+              <h1>Little Italy</h1>
+              <span class="tag" aria-hidden="true"></span>
+            </div>
+            <p>
+              All the decadent rich flavors of Italy with a chef's kiss. From pasta to
+              the fresh cheeses and herbs. All that's missing is the gondola boat ride.
+            </p>
+          </div>
+        </div>
+
+        <div id="menu"></div>
+      </main>
+
+      <aside aria-label="Pricing calculator">
+        <h3>Your price</h3>
+
+        <div class="row">
+          <span id="la">Adults</span>
+          <div class="step">
+            <button data-k="a" data-d="-1" aria-label="Fewer adults">&minus;</button>
+            <output id="a" aria-labelledby="la">2</output>
+            <button data-k="a" data-d="1" aria-label="More adults">+</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <span id="lk">Kids</span>
+          <div class="step">
+            <button data-k="k" data-d="-1" aria-label="Fewer kids">&minus;</button>
+            <output id="k" aria-labelledby="lk">0</output>
+            <button data-k="k" data-d="1" aria-label="More kids">+</button>
+          </div>
+        </div>
+
+        <div class="lines">
+          <small>Add courses for adults (entrees always included)</small>
+          <label><input type="checkbox" data-c="ap" checked /> Appetizers</label>
+          <label><input type="checkbox" data-c="so" checked /> Soups</label>
+          <label><input type="checkbox" data-c="sa" checked /> Salads</label>
+          <label><input type="checkbox" data-c="de" checked /> Desserts</label>
+        </div>
+
+        <div class="lines" id="lines" aria-live="polite"></div>
+
+        <div class="total">
+          <span>Total</span>
+          <span id="tot"></span>
+        </div>
+
+        <div class="note" id="note"></div>
+      </aside>
+    </div>
+
+    <script>
+      var M = [
+        ["Entrees", [
+          ["Chicken Carbonara", "Grilled Chicken Thighs | Thick Cut Bacon | Bucatini Pasta | Fresh Peas | Roasted Cauliflower | Roasted Rainbow Carrots"],
+          ["Under the Venice Streets", "Poached Sea Bass | Puttanesca Sauce | Pan Fried Spaetzle | Creamy Spinach & Mushrooms"],
+          ["Lady An The Scampi", "15-20 Shrimp | Linguini | Dry white Wine | Garlic Butter | Crushed Peppers | Lemon | Asparagus Spears"],
+          ["Garfield's Dream", "Lasagna Pasta | Ricotta Herb Spread | Arrabbiata Sauce | Pan Fried Crumbled Beef & Sausage | Mozzarella | Squash Chips"]
+        ]],
+        ["Appetizers", [
+          ["FIGured When in Rome", "Roasted Garlic Crustini | Fig Compote | Spicy Calabrese | Red Wine Poached Pears | Balsamic | Mint"],
+          ["Italian Stallion Sliders", "Parmesan Chicken Thighs | Diced Marinara | Smoked Provolone | Frisée | Roasted Garlic Aioli | Focaccia Slider Buns"],
+          ["Zuch!! Leaning Tower of Pisa!", "Parmesano Zucchini Fries | Marinara Dipping Sauce | Mozzarella Sticks | Pesto"]
+        ]],
+        ["Soups", [
+          ["Stracciatella Classic", "Roasted Chicken Stock | Parmesan Chicken Meatballs | Spinach | Shaved Cured Egg Yolks | Shaved Parmigiana Reggiano"],
+          ["Jolly Fagioli", "Cannelloni Pasta | Cannellini Beans | Herbs | Roasted Tomato | Chicken Broth | Fried Italian Sausage"],
+          ["Streets of Venice", "Gnocchi | Chicken | Basil Cream | Spinach"]
+        ]],
+        ["Salads", [
+          ["I Can't Believe It's Not Salad!", "Grilled Artichoke Hearts | Sundried Tomatoes | Capricola | Salami | Mozzarella | Green Olives | Red Peppers | Balsamic Glaze | Basil"],
+          ["Chopped Italy", "Romaine | Banana Peppers | Olives | Salami | Red Onion | Fresh Mozzarella Balls | Cherry Tomatoes | Lemon Herb Vinaigrette or Green Goddess"],
+          ["Char Char Caesar", "Grilled Romaine Hearts | Fresh White Truffle Caesar Dressing | Shaved Parmigiana Reggiano | Roasted Garlic & Herb Focaccia Croutons | Candied Lemon Peel"]
+        ]],
+        ["Desserts", [
+          ["Hazelnut Moon", "Hazelnut | Biscoff | Chocolate Budino | Biscoff Whip Cream | Praline Hazelnut Sauce"],
+          ["Cotta Have Dessert", "Vanilla Bean Heavy Cream | Gelatin Sheets | Blueberry Jam | Candied Lemon Zest or Mixed Berry Marmalade"],
+          ["It's About Tiramisu", "Lady Fingers | Mascarpone Spread | Coffee | Rum | Dark Chocolate"]
+        ]],
+        ["Kids Menu", [
+          ["The Land Before Time", "House Made Chicken Nuggets Or Beef Tips | Lava Gravy | Mashed Mountain | Broccoli Trees"],
+          ["Drum Roll Sliders", "Grass Fed Beef Sliders | Homemade Brioche Buns | House Made Ketchup | Fresh Fries or Zucchini Fries | Steamed Veggies"],
+          ["Taqi Taqi", "Taquitos (rolled Tacos) Choice Of Meat Or Bean and Cheese | Dipping Sauce | Rice | Veggies"],
+          ["It Aint E-z Being Cheeeeee-z", "Sour Dough | Choice Of Cheese and Meat | Tomato Bisque"],
+          ["Mom's Sghetti", "Fresh Pasta (Whatever Noodle the Kids Like) | Sauce (Butter, Tomato, Or Cheese) | Protein (Chicken, Meatballs, Or Shrimp)"]
+        ]]
+      ];
+
+      document.getElementById("menu").innerHTML = M.map(function(section) {
+        return (
+          "<h2>" + section[0] + "</h2>" +
+          section[1].map(function(item) {
+            return (
+              '<div class="menu-item">' +
+                '<b>' + item[0] + '</b>' +
+                '<span>' + item[1].replace(/&/g, "&amp;") + '</span>' +
+              '</div>'
+            );
+          }).join("")
+        );
+      }).join("");
+
+      var MIN = 399;
+      var P = { en: 85, ap: 32, so: 32, sa: 32, de: 36, kid: 25.71 };
+      var S = { a: 2, k: 0 };
+      var on = { ap: true, so: true, sa: true, de: true };
+
+      var N = {
+        en: "Entrees",
+        ap: "Appetizers",
+        so: "Soups",
+        sa: "Salads",
+        de: "Desserts"
+      };
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function money(n) {
+        return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function calc() {
+        var rows = [];
+        var sub = 0;
+        var a = S.a;
+        var k = S.k;
+
+        ["en", "ap", "so", "sa", "de"].forEach(function(code) {
+          if (code === "en" || on[code]) {
+            var value = P[code] * a;
+            sub += value;
+            rows.push(
+              '<div><span>' + N[code] +
+              ' <small>' + a + ' × ' + money(P[code]) + '</small></span><span>' + money(value) + '</span></div>'
+            );
+          }
+        });
+
+        if (k) {
+          var kidsTotal = P.kid * k;
+          sub += kidsTotal;
+          rows.push(
+            '<div><span>Kids menu <small>' + k + ' × ' + money(P.kid) + '</small></span><span>' + money(kidsTotal) + '</span></div>'
+          );
+        }
+
+        $("lines").innerHTML = rows.join("");
+
+        var total = Math.max(MIN, sub);
+        var guests = a + k;
+
+        $("tot").textContent = money(total);
+
+        if (sub < MIN) {
+          $("note").textContent = "The " + money(MIN) + " minimum applies. Your selections come to " + money(sub) + ".";
+        } else if (guests) {
+          $("note").textContent = money(total / guests) + " per guest.";
+        } else {
+          $("note").textContent = "";
+        }
+
+        $("a").textContent = a;
+        $("k").textContent = k;
+      }
+
+      document.querySelectorAll(".step button").forEach(function(button) {
+        button.addEventListener("click", function() {
+          var key = button.dataset.k;
+          var next = S[key] + Number(button.dataset.d);
+          if (key === "a") {
+            S[key] = Math.max(1, Math.min(60, next));
+          } else {
+            S[key] = Math.max(0, Math.min(60, next));
+          }
+          calc();
+        });
+      });
+
+      document.querySelectorAll("input[data-c]").forEach(function(input) {
+        input.addEventListener("change", function() {
+          on[input.dataset.c] = input.checked;
+          calc();
+        });
+      });
+
+      calc();
+    </script>
+  </body>
+</html>
