@@ -1,0 +1,245 @@
+/* Private chef menu pages (menu + price calculator). Loaded on top of site.css. */
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 72px var(--gutter) 96px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 40px;
+}
+
+h1 {
+  font-size: 34px;
+  margin: 0 0 6px;
+}
+
+h2 {
+  font-size: 1.9rem;
+  margin: 36px 0 4px;
+  padding-top: 20px;
+  border-top: 1px solid var(--c-line);
+}
+
+.intro {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.li-photo {
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+  object-position: 50% 45%;
+  border-radius: 14px;
+  flex: none;
+}
+
+.intro p {
+  color: var(--c-muted);
+  margin: 0;
+  max-width: 56ch;
+}
+
+.hero-headline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 190px;
+}
+
+.hero-headline .title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-headline .title-row h1 {
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  margin: 0;
+}
+
+.hero-headline .title-row .tag {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d7b97d, #b87a2e);
+  box-shadow: 0 0 0 2px rgba(184,122,46,0.15);
+}
+
+.menu-item {
+  margin: 14px 0;
+}
+
+.menu-item b {
+  display: block;
+  color: var(--c-gold);
+  font-weight: 600;
+}
+
+.menu-item span {
+  color: var(--c-muted);
+}
+
+aside {
+  position: sticky;
+  top: 96px;
+  align-self: start;
+  background: var(--c-panel);
+  border: 1px solid var(--c-line);
+  padding: 26px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+aside h3 {
+  margin: 0 0 14px;
+  font-size: 1.6rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  gap: 10px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.step button:hover {
+  background: var(--c-panel);
+}
+
+.step output {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.lines {
+  margin: 16px 0;
+  border-top: 1px solid var(--c-line);
+  padding-top: 10px;
+  font-size: 15px;
+}
+
+.lines div {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  gap: 8px;
+}
+
+.lines small {
+  color: var(--c-muted);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid var(--c-ink);
+  padding-top: 12px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.note {
+  color: var(--c-muted);
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+  margin: 6px 0;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--c-gold);
+}
+
+
+@media (max-width: 820px) {
+  .wrap {
+    display: block;
+  }
+
+  aside {
+    position: static;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .intro {
+    flex-direction: column;
+  }
+
+  .li-photo {
+    width: 100%;
+    height: 220px;
+  }
+}
+
+/* ---------- Badges (kid friendly, gluten-free capable, etc.) ---------- */
+
+.badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+  color: var(--c-muted);
+}
+.badge.diet { border-color: #cfdcc4; background: #f1f6ec; color: #4c6b38; }
+.menu-item .badge { padding: 2px 7px; font-size: 0.66rem; margin: 4px 4px 0 0; }
+.legend { color: var(--c-muted); font-size: 0.8rem; margin-top: 18px; }
+
+.back-link { display: inline-block; margin-bottom: 18px; font-size: 0.85rem; text-decoration: none; }
+
+.li-photo.placeholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #efe7da, #e2d6c4);
+  color: var(--c-muted);
+  font-family: var(--f-display);
+  font-style: italic;
+}
+
+/* ---------- Private chef hub page ---------- */
+
+.menu-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+.menu-card .media { margin-bottom: 22px; }
+.menu-card .from { color: var(--c-ink); font-weight: 600; font-size: 0.9rem; margin: 0 0 8px; }
+.menu-card .badges { margin: 0 0 14px; }
+
+@media (max-width: 560px) { .hero-headline .title-row .tag { display: none; } }
+
+video.li-photo { object-position: 50% 55%; background: var(--c-panel); }

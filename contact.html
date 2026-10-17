@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Book Heart N Soul for a private chef dinner, event or catering." />
+  <title>Book Heart N Soul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+  <header class="site-header"></header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Book &amp; Inquire</span>
+        <h1>Let&rsquo;s plan something special.</h1>
+        <p class="lead">Tell us about your dinner or event and we&rsquo;ll get back to you with menu ideas and pricing.</p>
+      </div>
+    </section>
+
+    <section class="section-tight" style="padding-bottom:96px">
+      <div class="container grid-2" style="align-items:start">
+        <form class="form card" id="inquiry">
+          <div class="row-2">
+            <label>Name <input name="name" required autocomplete="name" /></label>
+            <label>Email <input name="email" type="email" required autocomplete="email" /></label>
+          </div>
+          <div class="row-2">
+            <label>Phone <input name="phone" type="tel" autocomplete="tel" /></label>
+            <label>Event date <input name="date" type="date" /></label>
+          </div>
+          <div class="row-2">
+            <label>Service
+              <select name="service">
+                <option>Private Chef: Little Italy</option>
+                <option>Private Chef: Soul Of The South</option>
+                <option>Private Chef: You're A Wizard Harry!</option>
+                <option>Private Chef: Health is Wealth</option>
+                <option>Private Chef: Medi Food Retreat</option>
+                <option>Private Chef: Rise And Shine (brunch)</option>
+                <option>Burger catering or pop-up</option>
+                <option>Custom event</option>
+              </select>
+            </label>
+            <label>Guests <input name="guests" type="number" min="1" value="2" /></label>
+          </div>
+          <label>Tell us more <textarea name="message" placeholder="Occasion, allergies, anything we should know"></textarea></label>
+          <div><button class="btn btn-primary" type="submit">Send inquiry</button></div>
+        </form>
+
+        <div>
+          <ul class="info-list">
+            <li><span class="label">Phone</span><a data-contact="phone" href="#"></a></li>
+            <li><span class="label">Private chef email</span><a data-contact="chefEmail" href="#"></a></li>
+            <li><span class="label">Burgers email</span><a data-contact="burgersEmail" href="#"></a></li>
+            <li><span class="label">Private chef minimum</span>From $349 to $399 depending on the menu</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"></footer>
+  <script src="js/site.js"></script>
+  <script>
+    // GitHub Pages has no server, so the form opens the visitor's email app
+    // with everything filled in. Swap this for a form service later if you like.
+    document.getElementById("inquiry").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var d = new FormData(e.target);
+      // Burger requests go to the burgers inbox, everything else to the private chef inbox
+      var isBurgers = /burger/i.test(d.get("service"));
+      var to = document.querySelector(isBurgers ? '[data-contact="burgersEmail"]' : '[data-contact="chefEmail"]').textContent;
+      var body = ["Name: " + d.get("name"), "Email: " + d.get("email"), "Phone: " + d.get("phone"),
+        "Date: " + d.get("date"), "Service: " + d.get("service"), "Guests: " + d.get("guests"), "", d.get("message")].join("\n");
+      location.href = "mailto:" + to + "?subject=" + encodeURIComponent("Booking inquiry: " + d.get("service")) +
+        "&body=" + encodeURIComponent(body);
+    });
+  </script>
+</body>
+</html>

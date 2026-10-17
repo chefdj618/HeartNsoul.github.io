@@ -1,0 +1,200 @@
+/* ==========================================================
+   Heart N Soul Burgers - menu board
+   Black chalkboard, red brush-stroke headers, gold descriptions.
+   Loaded only on burgers.html, on top of site.css.
+   ========================================================== */
+
+body.theme-burgers {
+  --c-bg: #0a0808;
+  --c-surface: #131010;
+  --c-ink: #f1ece6;
+  --c-muted: #b9aea3;
+  --c-line: rgba(200, 22, 28, 0.35);
+  --c-accent: #d7191f;
+  --c-gold: #e2b33f;
+
+  --red: #e01b22;
+  --gold: #e2b33f;
+  --white: #f2efea;
+  --green: #4caf3a;
+  --display: "Oswald", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+
+  background:
+    radial-gradient(ellipse 70% 40% at 20% 0%, rgba(255,255,255,0.05), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(160,20,20,0.12), transparent 70%),
+    #0a0808;
+  color: var(--c-ink);
+}
+.theme-burgers .site-header { background: rgba(10, 8, 8, 0.94); }
+.theme-burgers .btn-primary { color: #fff; }
+.theme-burgers .btn-primary:hover { background: #b3141a; }
+
+.board-page { padding: 28px 16px 64px; }
+
+.board {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 22px 26px 0;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 10px 34px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 50% 30% at 15% 8%, rgba(255,255,255,0.06), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 60%, rgba(255,255,255,0.025), transparent 70%),
+    linear-gradient(180deg, #0d0b0b, #070606);
+  border-radius: 6px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  font-family: var(--display);
+  color: var(--white);
+}
+.board ul { list-style: none; margin: 0; padding: 0; }
+.board p { margin: 0; }
+.board img { display: block; max-width: 100%; height: auto; }
+.col { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.col + .col { border-left: 1px solid rgba(224, 27, 34, 0.45); padding-left: 24px; margin-left: -10px; }
+
+/* soft-edge photos so they melt into the board */
+.feature-shot img, .combo-img, .sig img, .sides img, .drink img {
+  -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+          mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+}
+
+.brand { margin: 0 0 4px; }
+.brand img { width: 100%; max-width: 470px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent), linear-gradient(180deg, transparent, #000 5%, #000 97%, transparent);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent), linear-gradient(180deg, transparent, #000 5%, #000 97%, transparent);
+          mask-composite: intersect; }
+
+/* ---------- Brush-stroke headers ---------- */
+.brush {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  align-self: flex-start;
+  margin: 8px 0 12px -8px;
+  padding: 6px 54px 6px 18px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 60' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23a10f14'/%3E%3Cstop offset='.55' stop-color='%23c8161c'/%3E%3Cstop offset='1' stop-color='%238c0c11'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0.0 4.9 L10.0 7.9 L20.0 6.8 L30.0 2.5 L40.0 2.3 L50.0 2.6 L60.0 5.8 L70.0 3.1 L80.0 7.6 L90.0 7.2 L100.0 10.8 L110.0 9.7 L120.0 3.3 L130.0 4.8 L140.0 3.6 L150.0 7.8 L160.0 6.9 L170.0 2.5 L180.0 8.1 L190.0 4.8 L200.0 6.1 L210.0 9.1 L220.0 4.2 L230.0 6.7 L240.0 8.6 L250.0 10.8 L260.0 5.8 L270.0 3.4 L280.0 2.4 L290.0 8.9 L300.0 9.9 L310.0 8.3 L320.0 7.2 L330.0 9.6 L340.0 6.3 L350.0 2.5 L360.0 7.8 L370.0 9.4 L380.0 5.5 L390.0 2.2 L400.0 3.5 L372.4 9.6 L375.2 13.8 L385.6 24.9 L373.2 29.7 L392.0 39.6 L402.8 46.9 L381.1 51.5 L400.0 50.1 L390.0 53.2 L380.0 55.0 L370.0 51.6 L360.0 57.9 L350.0 55.3 L340.0 55.0 L330.0 57.5 L320.0 53.1 L310.0 54.3 L300.0 51.8 L290.0 54.2 L280.0 55.0 L270.0 53.4 L260.0 55.8 L250.0 50.1 L240.0 51.6 L230.0 56.9 L220.0 54.2 L210.0 55.3 L200.0 51.7 L190.0 54.3 L180.0 52.8 L170.0 50.9 L160.0 49.6 L150.0 52.4 L140.0 54.2 L130.0 56.3 L120.0 50.1 L110.0 51.6 L100.0 49.4 L90.0 52.6 L80.0 57.5 L70.0 51.0 L60.0 56.4 L50.0 49.8 L40.0 52.9 L30.0 53.6 L20.0 52.3 L10.0 49.7 L0.0 50.4Z' fill='url(%23g)'/%3E%3Cpath d='M53 9.7 L403 9.0' stroke='%23000' stroke-opacity='0.10' stroke-width='0.9'/%3E%3Cpath d='M29 14.5 L344 14.0' stroke='%23000' stroke-opacity='0.08' stroke-width='1.2'/%3E%3Cpath d='M34 19.7 L402 20.1' stroke='%23000' stroke-opacity='0.15' stroke-width='1.5'/%3E%3Cpath d='M3 25.4 L394 25.9' stroke='%23000' stroke-opacity='0.20' stroke-width='1.7'/%3E%3Cpath d='M24 29.8 L267 30.1' stroke='%23000' stroke-opacity='0.09' stroke-width='0.7'/%3E%3Cpath d='M10 34.4 L304 33.5' stroke='%23000' stroke-opacity='0.08' stroke-width='0.8'/%3E%3Cpath d='M22 39.2 L254 40.0' stroke='%23000' stroke-opacity='0.17' stroke-width='0.8'/%3E%3Cpath d='M21 44.5 L308 43.8' stroke='%23000' stroke-opacity='0.20' stroke-width='2.0'/%3E%3Cpath d='M29 49.9 L264 49.1' stroke='%23000' stroke-opacity='0.13' stroke-width='1.0'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  font: 500 clamp(1.6rem, 3vw, 2.2rem)/1.1 var(--display);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #f4f1ec;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.45);
+  white-space: nowrap;
+}
+.brush.small { font-size: 1.6rem; padding: 4px 40px 4px 16px; margin: 0 auto; }
+.brush .ico { font-size: 0.9em; filter: grayscale(1) brightness(2.2); }
+
+/* ---------- Item lines with dotted leaders ---------- */
+.line { display: flex; align-items: baseline; gap: 6px; }
+.line b { font-weight: 400; font-size: clamp(1.25rem, 2.2vw, 1.6rem); color: var(--white); white-space: nowrap; }
+.line i { flex: 1; border-bottom: 2px dotted rgba(242, 239, 234, 0.55); transform: translateY(-5px); min-width: 16px; }
+.line em { font-style: normal; font-size: clamp(1.25rem, 2.2vw, 1.6rem); color: var(--red); white-space: nowrap; }
+.desc { color: var(--gold); font-weight: 300; font-size: 1.12rem; line-height: 1.3; }
+.tag { color: var(--red); font-weight: 500; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+
+.heart, .flame { display: inline-block; flex: none; background: center / contain no-repeat; }
+.heart { width: 30px; height: 27px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21S2 14.6 2 7.6A5.3 5.3 0 0 1 12 5a5.3 5.3 0 0 1 10 2.6C22 14.6 12 21 12 21z' fill='%23e01b22'/%3E%3C/svg%3E"); }
+.heart.sm { width: 16px; height: 14px; }
+.heart.lg { width: 46px; height: 42px; }
+.flame { width: 24px; height: 28px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 28'%3E%3Cpath d='M12 1c1 5 7 7 7 15a7 7 0 0 1-14 0c0-4 2-6 3-8 0 3 1 4 2 5 1-4 2-7 2-12z' fill='%23e01b22'/%3E%3Cpath d='M12 16c1 2 3 3 3 6a3 3 0 0 1-6 0c0-2 1-3 2-4z' fill='%23ffb02e'/%3E%3C/svg%3E"); align-self: center; }
+.flame.sm { width: 14px; height: 16px; }
+.smoke { color: var(--red); font-size: 1.1rem; }
+
+.items li { display: flex; gap: 14px; align-items: flex-start; padding: 6px 0; }
+.items li .heart { margin-top: 6px; }
+.items li > div { flex: 1; min-width: 0; }
+
+.feature-shot { margin: 6px auto 0; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.feature-shot img { width: 230px; }
+.feature-shot figcaption { margin-top: -6px; }
+
+/* ---------- 2 Heart Combos box ---------- */
+.combo {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  align-items: center;
+  border: 2px solid rgba(224, 27, 34, 0.85);
+  border-radius: 6px;
+  padding: 14px 14px 10px 20px;
+  background: rgba(0,0,0,0.35);
+}
+.combo-title { display: flex; align-items: center; gap: 10px; margin: 0; font: 500 clamp(1.6rem, 3vw, 2.3rem)/1 var(--display); text-transform: uppercase; color: #d9d6d2; }
+.combo-price { font: 600 clamp(3rem, 6vw, 4.6rem)/1 var(--display); color: var(--red); margin-top: 4px !important; }
+.combo-price span { font-size: 0.55em; color: #d9d6d2; font-weight: 500; text-transform: uppercase; vertical-align: 0.25em; }
+.best { color: var(--gold); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.06em; text-transform: uppercase; margin: 2px 0 8px 70px !important; }
+.includes { color: var(--red); font-size: 1.05rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.combo ul li { font-weight: 300; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 0 4px 26px; position: relative; }
+.combo ul li::before { content: ""; position: absolute; left: 0; top: 7px; width: 16px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21S2 14.6 2 7.6A5.3 5.3 0 0 1 12 5a5.3 5.3 0 0 1 10 2.6C22 14.6 12 21 12 21z' fill='%23e2b33f'/%3E%3C/svg%3E") center / contain no-repeat; }
+.slogan { font: 600 1.35rem/1.05 var(--display); text-transform: uppercase; color: #a8a29c; letter-spacing: 0.03em; margin-top: 10px !important; }
+.slogan span { color: var(--red); }
+
+/* ---------- Signature Hearts ---------- */
+.sig { display: grid; grid-template-columns: 1fr 190px; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 2px dashed rgba(224, 27, 34, 0.55); }
+.sig.plain { grid-template-columns: 1fr; padding-right: 200px; }
+.sig.last { border-bottom: 0; }
+.sig .line { gap: 8px; }
+.sig .tag { margin: 2px 0 4px 32px; }
+.sig .desc { margin-left: 32px; }
+
+/* ---------- Heart of the Earth ---------- */
+.earth { border: 2px solid rgba(76, 175, 58, 0.8); border-radius: 8px; padding: 12px 16px 14px; background: rgba(20, 40, 16, 0.18); margin-top: 6px; }
+.earth-head { display: flex; gap: 14px; align-items: flex-start; }
+.earth h3 { margin: 0 0 4px; font: 500 1.7rem/1.1 var(--display); color: var(--green); text-transform: uppercase; }
+.earth .line em { color: var(--green); font-size: 1.6rem; }
+.earth-desc { font-family: "Lora", Georgia, serif; font-size: 1.02rem; color: #e8e3dc; line-height: 1.3; max-width: 290px; }
+.globe { width: 54px; height: 54px; flex: none; border-radius: 50%; background: url("../images/burgers/earth.jpg") center / cover; }
+.earth .sub { display: flex; gap: 10px; align-items: center; margin-top: 10px !important; border: 1.5px solid rgba(76,175,58,0.7); border-radius: 6px; padding: 6px 12px; font-family: "Lora", Georgia, serif; font-size: 0.95rem; color: #e8e3dc; max-width: 330px; }
+.leaf { width: 22px; height: 22px; flex: none; background: var(--green); border-radius: 0 70% 0 70%; transform: rotate(10deg); }
+
+/* ---------- Bottom row ---------- */
+.sides, .drinks { padding-top: 14px; border-top: 1px solid rgba(224, 27, 34, 0.25); min-width: 0; }
+.drinks { border-left: 1px solid rgba(224, 27, 34, 0.45); padding-left: 24px; margin-left: -10px; }
+.sides .line { margin-top: 4px; }
+.sides img { width: 100%; max-width: 330px; margin-top: 6px; }
+.drink-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.drink { display: grid; grid-template-columns: 1fr 76px; gap: 8px; align-items: center; }
+.drink .price { color: var(--red); font-size: 1.6rem; }
+.drink .desc { font-size: 1.05rem; }
+
+.bottom-bar {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  margin: 10px -26px 0;
+  padding: 12px 34px;
+  border: 2px solid rgba(224, 27, 34, 0.75);
+  border-radius: 0 0 6px 6px;
+}
+.follow { display: flex; align-items: center; gap: 14px; }
+.follow span { color: var(--red); font-size: 1.15rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.soc { width: 26px; height: 26px; color: #d9d6d2; }
+.soc svg { width: 100%; height: 100%; }
+.pulse { width: 220px; color: var(--red); }
+.bottom-bar .slogan { justify-self: end; text-align: right; margin: 0 !important; letter-spacing: 0.12em; }
+
+/* ---------- Phones / tablets ---------- */
+@media (max-width: 900px) {
+  .board { grid-template-columns: 1fr; padding: 16px 16px 0; }
+  .col + .col, .drinks { border-left: 0; padding-left: 0; margin-left: 0; }
+  .bottom-bar { margin: 10px -16px 0; padding: 12px 16px; grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .bottom-bar .slogan { justify-self: center; text-align: center; }
+  .brand img { margin: 0 auto; }
+}
+@media (max-width: 560px) {
+  .combo { grid-template-columns: 1fr; }
+  .combo-img { max-width: 300px; margin: 0 auto; }
+  .sig.plain { padding-right: 0; }
+  .drink-grid { grid-template-columns: 1fr; }
+  .brush { font-size: 1.45rem; padding-right: 40px; }
+  .sig { grid-template-columns: 1fr 96px; }
+  .sig .tag, .sig .desc { margin-left: 0; }
+  .earth .line { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .earth .line i { display: none; }
+  .earth h3 { font-size: 1.45rem; }
+  .pulse { width: 160px; }
+}

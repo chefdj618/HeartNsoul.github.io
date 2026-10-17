@@ -3,408 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="About Heart N Soul - Chef-driven fire-cooked burgers and private chef services" />
+  <meta name="description" content="The story behind Heart N Soul and Chef Devin Johnson." />
   <title>About Heart N Soul</title>
-  <style>
-    :root {
-      --bg: #090807;
-      --bg-2: #11100f;
-      --bg-3: #1b1715;
-      --panel: #0b0b0a;
-      --red: #ff2d2d;
-      --red-deep: #a21014;
-      --red-soft: rgba(255, 55, 55, 0.22);
-      --cream: #f3e7d6;
-      --gold: #f5c867;
-      --text: #f8efe8;
-      --muted: #d9c9b5;
-      --shadow: rgba(255, 70, 70, 0.25);
-    }
-
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      background: #090807;
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      background:
-        radial-gradient(circle at 50% 15%, rgba(255,255,255,0.08), transparent 24%),
-        radial-gradient(circle at 15% 12%, rgba(255, 110, 110, 0.08), transparent 18%),
-        linear-gradient(180deg, #0b0909 0%, #070606 100%);
-    }
-
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; margin: 0; padding: 0; }
-
-    /* Navigation */
-    .nav-bar {
-      background: rgba(11, 11, 10, 0.95);
-      border-bottom: 2px solid rgba(255, 45, 45, 0.3);
-      padding: 16px 24px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .nav-logo {
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: var(--red);
-      letter-spacing: -0.05em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--red);
-    }
-
-    /* Main content */
-    .container {
-      flex: 1;
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 60px 24px;
-    }
-
-    .hero-section {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    .hero-section h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      color: var(--red);
-      margin: 0 0 20px;
-      text-transform: uppercase;
-    }
-
-    .hero-section p {
-      font-size: 1.2rem;
-      color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    .story-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      margin-bottom: 80px;
-      align-items: center;
-    }
-
-    .story-content h2 {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--red);
-      margin: 0 0 20px;
-      letter-spacing: -0.03em;
-    }
-
-    .story-content p {
-      color: var(--text);
-      line-height: 1.8;
-      margin: 0 0 16px;
-      font-size: 1rem;
-    }
-
-    .story-content p:last-child {
-      margin-bottom: 0;
-    }
-
-    .story-image {
-      width: 100%;
-      height: 400px;
-      background: linear-gradient(135deg, rgba(255, 45, 45, 0.1), rgba(255, 110, 110, 0.05));
-      border-radius: 12px;
-      border: 2px solid rgba(255, 45, 45, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    .services-section {
-      background: rgba(11, 11, 10, 0.6);
-      border: 2px solid rgba(255, 45, 45, 0.2);
-      border-radius: 12px;
-      padding: 60px 40px;
-      margin-bottom: 80px;
-    }
-
-    .services-section h2 {
-      font-size: 2.2rem;
-      font-weight: 900;
-      color: var(--red);
-      text-align: center;
-      margin: 0 0 50px;
-      letter-spacing: -0.03em;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .service-card {
-      background: rgba(27, 23, 21, 0.8);
-      border: 1px solid rgba(255, 45, 45, 0.25);
-      padding: 30px;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
-    }
-
-    .service-card h3 {
-      color: var(--red);
-      font-size: 1.3rem;
-      margin: 0 0 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .service-card p {
-      color: var(--muted);
-      margin: 0;
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    .chef-bio {
-      background: linear-gradient(135deg, rgba(255, 45, 45, 0.08), rgba(245, 200, 103, 0.04));
-      border: 2px solid rgba(255, 45, 45, 0.25);
-      border-radius: 12px;
-      padding: 50px 40px;
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .chef-bio h2 {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--red);
-      margin: 0 0 16px;
-    }
-
-    .chef-bio .role {
-      color: var(--gold);
-      font-size: 1.1rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 24px;
-    }
-
-    .chef-bio p {
-      color: var(--text);
-      line-height: 1.8;
-      margin: 0 auto;
-      max-width: 700px;
-      font-size: 1rem;
-    }
-
-    .cta-section {
-      text-align: center;
-      padding: 40px;
-      background: rgba(255, 45, 45, 0.08);
-      border: 2px solid rgba(255, 45, 45, 0.2);
-      border-radius: 12px;
-    }
-
-    .cta-section h2 {
-      color: var(--red);
-      font-size: 1.8rem;
-      margin: 0 0 24px;
-      text-transform: uppercase;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 14px 40px;
-      background: var(--red);
-      color: var(--bg);
-      text-decoration: none;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-size: 1rem;
-      border-radius: 4px;
-      transition: background 0.3s, transform 0.3s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .cta-button:hover {
-      background: #ff4545;
-      transform: translateY(-2px);
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        gap: 16px;
-      }
-
-      .nav-links a {
-        font-size: 0.75rem;
-      }
-
-      .story-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .story-image {
-        height: 300px;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .container {
-        padding: 40px 16px;
-      }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav-bar">
-    <div class="nav-container">
-      <div class="nav-logo">❤️ HEART N SOUL</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="burgers.html">Burgers</a></li>
-        <li><a href="little-italy.html">Private Chef</a></li>
-      </ul>
-    </div>
-  </nav>
+  <header class="site-header"></header>
 
-  <!-- Main Content -->
-  <div class="container">
-    <!-- Hero -->
-    <section class="hero-section">
-      <h1>Our Story</h1>
-      <p>Bold, fire-cooked flavor meets chef-driven technique and real soul. Every experience is crafted with intention.</p>
-    </section>
-
-    <!-- Chef Bio -->
-    <section class="chef-bio">
-      <h2>Chef Devin Johnson</h2>
-      <div class="role">Culinary Visionary & Founder</div>
-      <p>
-        Chef Devin brings together decades of fine-dining experience with an authentic love for backyard grilling and bold flavors. 
-        From fire-cooked burgers to curated private chef experiences, every dish tells a story of passion, precision, and soul. 
-        His philosophy: great food comes from intention, quality ingredients, and the courage to push boundaries.
-      </p>
-    </section>
-
-    <!-- Story Section -->
-    <section class="story-grid">
-      <div class="story-content">
-        <h2>Rugged Authenticity</h2>
-        <p>
-          Heart N Soul started with a simple idea: deliver bold, unforgettable food that feels like home. 
-          We believe in fire-cooked perfection, handcrafted every time.
-        </p>
-        <p>
-          Whether it's a perfectly seared burger with house-made sauce or a multi-course private dining experience, 
-          every detail matters. We source premium ingredients, honor traditional techniques, and never compromise on flavor.
-        </p>
-        <p>
-          This isn't food made to impress. It's food made to feed your soul.
-        </p>
+  <main>
+    <section class="page-hero center">
+      <div class="container">
+        <span class="eyebrow">My Story</span>
+        <h1>Made with heart,<br />seasoned with soul.</h1>
+        <hr class="divider" />
       </div>
-      <div class="story-image">🔥 FIRE</div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services-section">
-      <h2>What We Offer</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🍔</div>
-          <h3>Burger Menu</h3>
-          <p>
-            Handcrafted, fire-cooked burgers with bold toppings, house-made sauces, and sides that hit different. 
-            Every burger is a masterpiece.
-          </p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">👨‍🍳</div>
-          <h3>Private Chef</h3>
-          <p>
-            Curated multi-course dining experiences. From Italian classics to chef's specials. 
-            Minimum 2-6 guests. Custom menus available.
-          </p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🎉</div>
-          <h3>Custom Events</h3>
-          <p>
-            Corporate events, celebrations, intimate dinners. We bring chef-driven cuisine to your table. 
-            Let's make it unforgettable.
-          </p>
+    <!-- Story -->
+    <section class="section-tight">
+      <div class="container narrow prose">
+        <p>Heart N Soul started when I was a kid, surrounded by family gatherings and classic, soul-filled Southern dishes. Back then, I had no idea those moments would blossom into the core of who I am today.</p>
+        <p>I&rsquo;ve always been fond of creating memories through food. There&rsquo;s something special about sharing a good meal, a few laughs, and moments that stay with you long after the plates are cleared. Food has a way of bringing people together, creating bonds between souls, and turning ordinary moments into unforgettable memories.</p>
+        <p>That&rsquo;s what Heart N Soul means to me. Food made with all heart, just seasoned with soul.</p>
+        <p>I just want to spread love and make people smile. I believe that if you want to start a change, you have to be the change. And for me, that starts with something as simple and meaningful as bringing people together through food.</p>
+        <p>Heart N Soul carries so many different meanings, but if I had to describe it all in one word, that word would be <strong>L-O-V-E.</strong></p>
+        <p>So now that you&rsquo;re here, let&rsquo;s make Heart N Soul a part of your journey through life, and hopefully, a memory you cherish. A meal that brings a smile to your face, a moment that warms your heart, or an experience that reminds you just how beautiful it is to share something special with others.</p>
+        <p>Because at the end of the day, it&rsquo;s never just about the food. It&rsquo;s about the love we put into it, the connections we create, and the memories we leave behind.</p>
+        <p><strong>Welcome to Heart N Soul. Made with heart, seasoned with soul, and served with love.</strong></p>
+      </div>
+    </section>
+
+    <!-- Chef -->
+    <section class="section">
+      <div class="container grid-2">
+        <div class="media">Chef photo</div>
+        <div>
+          <span class="eyebrow">Founder &amp; Chef</span>
+          <h2>Chef Devin Johnson</h2>
+          <hr class="divider" />
+          <p class="lead">Chef Devin brings fine-dining technique together with a love for backyard grilling and bold flavor. From fire-cooked burgers to curated private dinners, every dish is made with intention, quality ingredients and soul.</p>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-      <h2>Ready to Experience the Heart?</h2>
-      <p style="color: var(--muted); margin-bottom: 24px;">
-        Order burgers now or inquire about private chef services
-      </p>
-      <a href="burgers.html" class="cta-button">View Burger Menu</a>
-      <span style="color: var(--muted); margin: 0 16px;">or</span>
-      <a href="little-italy.html" class="cta-button">Book Private Chef</a>
+    <!-- Services -->
+    <section class="section section-panel">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">What We Offer</span>
+          <h2>Ways to share a meal</h2>
+          <hr class="divider" />
+        </div>
+        <div class="grid-3" style="margin-top:32px">
+          <div class="card">
+            <h3>Burgers</h3>
+            <p>Handcrafted smashburgers, Soul Fries and signature drinks with house-made sauces.</p>
+            <a href="burgers.html">See the menu &rarr;</a>
+          </div>
+          <div class="card">
+            <h3>Private Chef</h3>
+            <p>Curated multi-course dinners in your home, with themed menus from Little Italy to Soul Of The South.</p>
+            <a href="private-chef.html">Build a dinner &rarr;</a>
+          </div>
+          <div class="card">
+            <h3>Events</h3>
+            <p>Celebrations, corporate gatherings and intimate dinners, planned around you.</p>
+            <a href="contact.html">Start planning &rarr;</a>
+          </div>
+        </div>
+      </div>
     </section>
-  </div>
+
+    <section class="section center">
+      <div class="container narrow">
+        <h2>Ready to experience the heart?</h2>
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn btn-primary" href="contact.html">Book Heart N Soul</a>
+          <a class="btn btn-outline" href="burgers.html">View the Burger Menu</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"></footer>
+  <script src="js/site.js"></script>
 </body>
 </html>
