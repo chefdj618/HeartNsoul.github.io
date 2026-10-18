@@ -84,7 +84,7 @@ body.theme-burgers {
   text-shadow: 0 2px 0 rgba(0,0,0,0.45);
   white-space: nowrap;
 }
-.brush.small { font-size: 1.6rem; padding: 4px 40px 4px 16px; margin: 0 auto; }
+.brush.small { font-size: 1.3rem; padding: 4px 40px 4px 16px; margin: 0 auto; }
 .brush .ico { font-size: 0.9em; filter: grayscale(1) brightness(2.2); }
 
 /* ---------- Item lines with dotted leaders ---------- */
@@ -107,8 +107,9 @@ body.theme-burgers {
 .items li .heart { margin-top: 6px; }
 .items li > div { flex: 1; min-width: 0; }
 
-.feature-shot { margin: 6px auto 0; text-align: center; display: flex; flex-direction: column; align-items: center; }
-.feature-shot img { width: 230px; }
+.feature-shot { min-width: 0; width: 100%; margin: 6px 0 0; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.feature-pair { align-items: start; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 14px; margin-top: 8px; }
+.feature-shot img { width: 100%; max-width: 240px; aspect-ratio: 1 / 1; object-fit: cover; }
 .feature-shot figcaption { margin-top: -6px; }
 
 /* ---------- 2 Heart Combos box ---------- */
@@ -197,4 +198,7 @@ body.theme-burgers {
   .earth .line i { display: none; }
   .earth h3 { font-size: 1.45rem; }
   .pulse { width: 160px; }
+}
+@media (max-width: 560px) {
+  .feature-shot .brush.small { font-size: 1rem; padding: 3px 26px 3px 12px; }
 }

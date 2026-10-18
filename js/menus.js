@@ -234,11 +234,10 @@ var MENUS = {
     name: "Rise And Shine",
     page: "rise-and-shine.html",
     photo: "images/rise-and-shine.jpg",
-    video: "images/rise-and-shine.mp4",
     photoAlt: "Fruit plates with sliced apple, melon and granola",
     desc: "A slow, indulgent start to the day, featuring thoughtfully prepared dishes made fresh on-site and served with effortless grace. Each bite is balanced and comforting, inviting guests to linger, savor, and ease into the moment.",
     tags: ["vg", "sf", "pf", "gf", "df", "kid"],
-    min: 349,
+    min: 399,
     prixFixe: 199.99,
     prices: { kid: 25.71 },
     courses: {
