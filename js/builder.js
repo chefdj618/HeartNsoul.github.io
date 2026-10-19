@@ -21,7 +21,6 @@
     { key: "sa", name: "Salad" },
     { key: "de", name: "Desserts" }
   ];
-  var KID_PRICE = 25.71;
 
   // Menus that are priced per course (prix fixe brunch is booked as a whole menu)
   var menuKeys = Object.keys(MENUS).filter(function (k) { return !MENUS[k].prixFixe; });
@@ -37,17 +36,18 @@
     var p = id.split("|");
     var m = MENUS[p[0]];
     var it = m.courses[p[1]][+p[2]];
-    return { id: id, menu: m.name, name: it[0], desc: it[1], price: m.prices[p[1]] };
+    return { id: id, menu: m.name, name: it[0], desc: it[1], price: dishPrice(m, p[1], +p[2]) };
   }
   function options(course, includeNone) {
     var html = includeNone ? '<option value="">No ' + course.name.toLowerCase() + "</option>" : '<option value="">Choose a dish…</option>';
     menuKeys.forEach(function (k) {
       var m = MENUS[k];
       var list = m.courses[course.key];
-      if (!list || !m.prices[course.key]) return;
-      html += '<optgroup label="' + esc(m.name) + " · " + money(m.prices[course.key]) + '">';
+      var each = m.itemPrices && m.itemPrices[course.key];
+      if (!list || !(each || (m.prices && m.prices[course.key]))) return;
+      html += '<optgroup label="' + esc(m.name) + (each ? "" : " · " + money(m.prices[course.key])) + '">';
       list.forEach(function (it, i) {
-        html += '<option value="' + k + "|" + course.key + "|" + i + '">' + esc(it[0]) + "</option>";
+        html += '<option value="' + k + "|" + course.key + "|" + i + '">' + esc(it[0]) + (each ? " · " + money(dishPrice(m, course.key, i)) : "") + "</option>";
       });
       html += "</optgroup>";
     });
@@ -87,13 +87,14 @@
       "<h3>Your dinner</h3>" +
       '<div class="row"><span id="lba">Adults</span><div class="step"><button type="button" data-k="a" data-d="-1" aria-label="Fewer adults">&minus;</button><output id="ba" aria-labelledby="lba">2</output><button type="button" data-k="a" data-d="1" aria-label="More adults">+</button></div></div>' +
       '<div class="row"><span id="lbk">Kids</span><div class="step"><button type="button" data-k="k" data-d="-1" aria-label="Fewer kids">&minus;</button><output id="bk" aria-labelledby="lbk">0</output><button type="button" data-k="k" data-d="1" aria-label="More kids">+</button></div></div>' +
+      '<div class="row"><span id="lbt">Kids 5 &amp; under <small>(free)</small></span><div class="step"><button type="button" data-k="t" data-d="-1" aria-label="Fewer little ones">&minus;</button><output id="bt" aria-labelledby="lbt">0</output><button type="button" data-k="t" data-d="1" aria-label="More little ones">+</button></div></div>' +
       '<div class="lines" id="b-lines" aria-live="polite"></div>' +
       '<div class="total"><span>Total</span><span id="b-tot"></span></div>' +
       '<div class="note" id="b-note"></div>' +
       '<a class="btn btn-primary" id="b-book" href="contact.html" style="display:block;text-align:center;margin-top:18px">Request this dinner</a>' +
     "</aside>";
 
-  var S = { a: 2, k: 0 };
+  var S = { a: 2, k: 0, t: 0 };
 
   function get(course) {
     var el = root.querySelector('.pick[data-course="' + course.key + '"]');
@@ -108,7 +109,7 @@
   }
 
   function calc() {
-    var adults = S.a, kids = S.k, guests = adults + kids;
+    var adults = S.a, kids = S.k, tots = S.t, guests = adults + kids + tots, paying = adults + kids;
     var canSplit = guests >= SPLIT_AT && adults >= 2;
     document.getElementById("split-note").hidden = canSplit;
 
@@ -142,6 +143,10 @@
       rows.push("<div><span>Kids menu <small>" + kids + " &times; " + money(KID_PRICE) + "</small></span><span>" + money(KID_PRICE * kids) + "</span></div>");
       summary.push("Kids menu x" + kids);
     }
+    if (tots) {
+      rows.push("<div><span>Kids 5 &amp; under <small>" + tots + " &times; free</small></span><span>$0.00</span></div>");
+      summary.push("Kids 5 & under (free) x" + tots);
+    }
 
     document.getElementById("b-lines").innerHTML = rows.length ? rows.join("") : "<small>Choose an entree to get started.</small>";
     var hasEntree = !!get(COURSES[0]).a;
@@ -149,13 +154,14 @@
     document.getElementById("b-tot").textContent = money(total);
     var note = "";
     if (hasEntree && sub < MIN) note = "The " + money(MIN) + " minimum applies. Your selections come to " + money(sub) + ".";
-    else if (hasEntree) note = money(total / guests) + " per guest.";
+    else if (hasEntree) note = money(total / paying) + " per paying guest.";
     document.getElementById("b-note").textContent = note;
     document.getElementById("ba").textContent = adults;
     document.getElementById("bk").textContent = kids;
+    document.getElementById("bt").textContent = tots;
 
     // Pass the selections to the booking form
-    var msg = "Mix & match dinner for " + adults + " adult" + (adults > 1 ? "s" : "") + (kids ? " and " + kids + " kid" + (kids > 1 ? "s" : "") : "") + ":\n" +
+    var msg = "Mix & match dinner for " + adults + " adult" + (adults > 1 ? "s" : "") + (kids ? ", " + kids + " kid" + (kids > 1 ? "s" : "") : "") + (tots ? ", " + tots + " kid" + (tots > 1 ? "s" : "") + " 5 & under" : "") + ":\n" +
       summary.join("\n") + (hasEntree ? "\nEstimated total: " + money(total) : "");
     var book = document.getElementById("b-book");
     book.href = "contact.html?service=" + encodeURIComponent("Custom event") + "&guests=" + guests + "&message=" + encodeURIComponent(msg);

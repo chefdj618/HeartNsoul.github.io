@@ -9,6 +9,9 @@
 
    prices: per adult for each course; kid is per child.
            Leave kid out if the menu has no kids menu.
+   itemPrices: optional, a price for every dish (same order as
+           the dishes). When a menu has these, guests pick their
+           dishes and each one is priced on its own.
    tags:   kid, gf, df, vg, sf, pf, tnf  (see TAGS below)
    photo:  image shown at the top of the menu and on its card.
    video:  optional short looping clip (.mp4); photo is shown
@@ -24,6 +27,9 @@ var TAGS = {
   pf: "Peanut-free capable",
   tnf: "Tree nut-free capable"
 };
+
+/* Kids menu: $20 per child. Kids 5 and under eat free. */
+var KID_PRICE = 20;
 
 var KIDS_MENU = [
   ["The Land Before Time", "House Made Chicken Nuggets Or Beef Tips | Lava Gravy | Mashed Mountain | Broccoli Trees"],
@@ -42,7 +48,15 @@ var MENUS = {
     desc: "All the decadent rich flavors of Italy with a chef's kiss. From pasta to the fresh cheeses and herbs. All that's missing is the gondola boat ride.",
     tags: ["kid"],
     min: 399,
-    prices: { en: 85, ap: 32, so: 32, sa: 32, de: 36, kid: 25.71 },
+    prices: { kid: KID_PRICE },
+    // Each dish has its own price, in the same order as the dishes below
+    itemPrices: {
+      en: [88, 105, 99, 92],
+      ap: [35, 38, 38],
+      so: [34, 32, 34],
+      sa: [36, 34, 38],
+      de: [40, 36, 38]
+    },
     courses: {
       en: [
         ["Chicken Carbonara", "Grilled Chicken Thighs | Thick Cut Bacon | Bucatini Pasta | Fresh Peas | Roasted Cauliflower | Roasted Rainbow Carrots"],
@@ -82,7 +96,15 @@ var MENUS = {
     desc: "This menu will touch your heart and comfort the soul. It has it all but the bed for the nap you will need afterwards.",
     tags: ["kid"],
     min: 399,
-    prices: { en: 82.27, ap: 31.99, so: 31.99, sa: 31.99, de: 34.99, kid: 25.71 },
+    prices: { kid: KID_PRICE },
+    // Each dish has its own price, in the same order as the dishes below
+    itemPrices: {
+      en: [78, 89, 76],
+      ap: [32, 32, 38],
+      so: [32, 32, 32],
+      sa: [32, 32, 34],
+      de: [35, 36, 38]
+    },
     courses: {
       en: [
         ["That's All Folks", "Eastern Carolina BBQ Sauce | Pulled Pork | Apple Cider Slaw | Brioche Bun | Four Cheese Macaroni | Garlic Green Beans"],
@@ -117,16 +139,24 @@ var MENUS = {
     name: "You're A Wizard Harry!",
     page: "youre-a-wizard-harry.html",
     photo: "images/youre-a-wizard-harry.jpg",
-    photoAlt: "Lovegood Raddish Salad: shaved radish and cucumber with red cabbage and citrus zest",
+    photoAlt: "Lovegood Radish Salad: shaved radish and cucumber with red cabbage and citrus zest",
     desc: "These foods from Hogwarts will make your Muggle tastebuds dance with magic!",
     tags: ["kid"],
     min: 399,
-    prices: { en: 89.99, ap: 29.99, so: 29.99, sa: 29.99, de: 34.99, kid: 25.71 },
+    prices: { kid: KID_PRICE },
+    // Each dish has its own price, in the same order as the dishes below
+    itemPrices: {
+      en: [88, 84, 110],
+      ap: [32, 32, 34],
+      so: [32, 32, 32],
+      sa: [32, 32, 32],
+      de: [32, 32, 38]
+    },
     courses: {
       en: [
         ["Chiddingly Hot Pot", "Eye-Roast | Olives | Tarragon Vinegar | Cloves | Potatoes | Glazed Carrots"],
         ["Bangers, Brussels, & Mash", "Ground Veal & Pork | Bread Crumbs | Lemon Zest | Sage | Marjoram | Mashed Potatoes | Onion Gravy | Béchamel Brussels"],
-        ["Boullabaisse", "Seasonal White Fish | Lobster Tail | Crabmeat | Shrimp | Clams | White Wine | Tomatoes | Clam Juice | Saffron | Herbed Crostinis"]
+        ["Bouillabaisse", "Seasonal White Fish | Lobster Tail | Crabmeat | Shrimp | Clams | White Wine | Tomatoes | Clam Juice | Saffron | Herbed Crostinis"]
       ],
       ap: [
         ["Cornish Pasties", "Puff Pastry Tartlet | Chopped Chuck Steak | Potatoes | Caramelized Onion Jam"],
@@ -139,7 +169,7 @@ var MENUS = {
         ["Cock-A-Leekie", "Roasted Chicken Thighs | Leeks | White Rice"]
       ],
       sa: [
-        ["Lovegood Raddish Salad", "Radishes | Cucumber | Red Onion | Radicchio | Dill Vinaigrette"],
+        ["Lovegood Radish Salad", "Radishes | Cucumber | Red Onion | Radicchio | Dill Vinaigrette"],
         ["Gillyweed", "Seaweed | Cucumber | Calamari | Chili Garlic Sauce"],
         ["Hogwarts House Salad", "Seared Parsnips | Roasted Cherry Tomatoes | Roasted Red Beets | Asparagus | Shredded Rainbow Carrots | Blue Cheese Honey Vinaigrette"]
       ],
@@ -160,7 +190,15 @@ var MENUS = {
     desc: "Real food, real flavor, real intention. Built on clean ingredients and bold combinations, this menu fuels you with lean proteins, fiber-rich vegetables, and nutrient-dense ingredients.",
     tags: ["gf", "df"],
     min: 399,
-    prices: { en: 72, ap: 30, so: 30, sa: 30, de: 35 },
+    prices: {},
+    // Each dish has its own price, in the same order as the dishes below
+    itemPrices: {
+      en: [68, 76, 68],
+      ap: [32, 32, 32],
+      so: [32, 32, 32],
+      sa: [34, 34, 32],
+      de: [30, 32, 35]
+    },
     courses: {
       en: [
         ["Pep In Your Step", "Bell Peppers | Wild Rice | Ground Turkey | Arrabiata Coulis | Jarlsberg"],
@@ -198,7 +236,15 @@ var MENUS = {
     desc: "Inspired by the sun-soaked coasts and rich traditions of the Mediterranean. This menu highlights fresh ingredients, bold herbs, and a refined approach.",
     tags: ["vg", "gf", "kid"],
     min: 399,
-    prices: { en: 89.99, ap: 31.99, so: 31.99, sa: 31.99, de: 34.99, kid: 25.71 },
+    prices: { kid: KID_PRICE },
+    // Each dish has its own price, in the same order as the dishes below
+    itemPrices: {
+      en: [84, 98, 84],
+      ap: [38, 37, 32],
+      so: [32, 32, 30],
+      sa: [34, 32, 34],
+      de: [33, 35, 34]
+    },
     courses: {
       en: [
         ["Medi Clucking Coust", "Mediterranean Stewed Chicken Breast | Couscous | Patty Squash & Broccolini", ["gf", "df", "sf", "pf"]],
@@ -239,7 +285,7 @@ var MENUS = {
     tags: ["vg", "sf", "pf", "gf", "df", "kid"],
     min: 399,
     prixFixe: 199.99,
-    prices: { kid: 25.71 },
+    prices: { kid: KID_PRICE },
     courses: {
       en: [
         ["Sunny Side Of the Lawn", "Smoked Brisket | Collard Greens | Manchego Grits | Sunnyside Eggs | Crispy Shallots", ["sf", "pf", "tnf", "gf"]],
@@ -258,5 +304,110 @@ var MENUS = {
       ],
       kid: KIDS_MENU
     }
+  },
+
+  "rise-and-shine-breakfast": {
+    name: "Rise and Shine Breakfast",
+    page: "rise-and-shine-breakfast.html",
+    photo: "images/rise-and-shine-breakfast.jpg",
+    photoAlt: "Sticks of Joy: brioche French toast sticks with bananas foster and whipped cream",
+    desc: "They say the most important meal of the day is breakfast. So get the daily grind started right with this delight!",
+    tags: [],
+    min: 399,
+    prices: {},
+    // Each dish has its own price, in the same order as the dishes below
+    itemPrices: {
+      en: [75, 85, 78],
+      ap: [32, 34, 32],
+      so: [32, 34, 32],
+      sa: [32, 32, 34],
+      de: [36, 40, 34]
+    },
+    courses: {
+      en: [
+        ["Foundation For Success", "Maple Infused Pancakes or Waffles | Sweet N Smokey Ham | Eggs (Made To Order) | Sliced Pan Fried Potatoes | Roasted Root Vegetables"],
+        ["Sunny Side Of the Lawn", "Manchego Grits | Collard Greens | Smoked Brisket | Sunnyside Eggs | Crispy Shallots"],
+        ["Benedict Gobbler", "Smashed Crispy Plantains | Avocado Slices | Sauteed Spinach | Turkey Bacon | Hollandaise Foam | Poached Egg | Pickled Shallots | Chives"]
+      ],
+      ap: [
+        ["Sticks of Joy", "Thick Cut Brioche | Cinnamon Mocha Custard | Banana Foster | Whip Cream"],
+        ["Smashocado Toast", "Crispy Brioche | Smashed Avocado | Roasted Peppers | Caramelized Onions | Arugula"],
+        ["Eggcellent Cottage Cups", "Whipped Cottage Cheese Egg Whites | Fresh Berry Compote | Honey Comb | Mint"]
+      ],
+      so: [
+        ["Piggy's Potato", "Thick Cut Applewood Bacon | Diced Yukon Potatoes | Roasted Garlic Leek Broth | Jalapeño | Cheddar"],
+        ["Basil Pool and Chz Floaties", "Rich Charred Tomato Puree | Basil Pesto (Pine Nut Free) | Roasted Garlic Oil | Grilled Cheese Croutons"],
+        ["Strawnana Pancho (gazpacho)", "Pickled Strawberry Puree | Frozen Banana Puree | Tropical Honey Sauce | Ginger Mint Infused Oat Cream | Citrus Zest"]
+      ],
+      sa: [
+        ["Fruity Tooty", "Melon | Berries | Mango | Pineapple | Honey Rum Sauce | Pistachio Mint Dust"],
+        ["Get Started Parfait", "House Made Yogurt | Quinoa Granola | Dried & Fresh Seasonal Fruit | Citrus Honey Glaze"],
+        ["Apple a Day", "Super Greens Mix (Baby Kale, Arugula) | Jicama | Honey Crisp Apple | Spiced Citrus Candied Pecans | Sun Dried Tomato Feta | Lemon Honey Vinaigrette (Chipotle Option For Heat)"]
+      ],
+      de: [
+        ["Wake up and Smell the Coffee", "Coffee Carrot Zucchini Cake | Lemon-Orange Ricotta | Crème Anglaise"],
+        ["Tirango", "Mango Soaked Lady Fingers | Cream Of Coconut Mascarpone Cream | Mango Jelly | Fresh Mango | Freeze Dried Mango Dust | Shaved White Chocolate | Mango Rum, Basil, Mint Granita"],
+        ["Sunshine In a Spoon", "Pineapple Coconut Custard | Prosecco with Lime Juice | Fresh Pineapple | Toasted Coconut Flakes | Lime Zest"]
+      ]
+    }
+  },
+
+  /* Holiday menu */
+  "home-for-the-holidaze": {
+    name: "Home for the Holidaze?",
+    page: "home-for-the-holidaze.html",
+    photo: "images/home-for-the-holidaze.jpg",
+    photoAlt: "Vanilla bean custard with caramel, hazelnut crumble and crème anglaise",
+    desc: "A collection of holiday classics and rich, comforting flavors, built on tradition with flavors that feel like home.",
+    tags: ["kid"],
+    min: 399,
+    prices: { kid: KID_PRICE },
+    // Each dish has its own price, in the same order as the dishes below
+    itemPrices: {
+      en: [110, 88, 92],
+      ap: [38, 42, 34],
+      so: [40, 36, 32],
+      sa: [40, 34, 38],
+      de: [38, 34, 36]
+    },
+    courses: {
+      en: [
+        ["Prime Rib Roasting On An Open Fire", "Smoked Prime Rib | Roasted Tomato au Jus | 4 Cheese Macaroni | Roasted Sweet Potatoes | Garlicky Green Beans"],
+        ["Gobble It Up", "Citrus Herb, Garlic Turkey | Hamhock Stuffing | Giblet Gravy | Smashed Potatoes | Collard Greens"],
+        ["You're such a Ham", "Bourbon Smoked Ham | Smokey Maple Glaze | Cauliflower Purée | Roasted Brussels | Roasted Baby Potatoes & Carrots"]
+      ],
+      ap: [
+        ["Board of Dreams", "Dried Meats | Premium Cheese | Fruit Jelly | Stone Ground Mustard | Crackers | Roasted Mixed Nuts"],
+        ["Just Keep Swimming", "3 U10 Shrimp | Cocktail Gastrique | Arugula | Lemon Zest"],
+        ["Squash The Squabbles", "Herbed Crostinis | Roasted Squash | Cranberry & Cinnamon Jam | Roasted Garlic Walnuts | Prosciutto"]
+      ],
+      so: [
+        ["Chedduh Bay", "Cajun Shrimp | Butter Garlic Scallops | Smoked Cheddar | Grilled Ciabatta"],
+        ["Grandma's Dumplings", "Charred & Braised Chicken Halves | Herb Infused Dumplings | Roasted Chicken Broth | Seasonal Veggies"],
+        ["Pot of Leek", "Roasted Potato Purée | Roasted Vegetable Broth | Caramelized Leeks | Roasted Yellow Beets | Scallions"]
+      ],
+      sa: [
+        ["Or zo, It's Not a Salad?", "Orzo Pasta | Caramel Pecans | Feta | Cherry Tomatoes | Cranberry | Poached Pears | Roasted Garlic Sage Vinaigrette"],
+        ["Your Majesty", "Spring Mix | Arugula | Seasonal Garden Vegetables | Roasted Garlic Croutons | Orange Supremes | Fried Shallots | Citrus Cranberry Vinaigrette or Green Goddess"],
+        ["Honeycrisp on a Silent Night", "Frisée & Endive | Shaved Honeycrisp Apples | Spiced Candied Walnuts | Brie | Spiced Ginger Vinaigrette"]
+      ],
+      de: [
+        ["Layers of Pumpkin", "Cinnamon Sugar Graham Cracker Crust | Vanilla Bean Cheesecake | Pumpkin Cheesecake | Allspice Chantilly"],
+        ["Pumpkin Patch", "Spiced Pie Dough | Fresh Pumpkin Pie Filling | Chai Anglaise"],
+        ["Apple of My Eye", "Fresh Apple Pie | House Made Bourbon Vanilla Bean Ice Cream | Caramel Whip Cream"]
+      ],
+      kid: KIDS_MENU
+    }
   }
 };
+
+/* Price of one dish: its own price if the menu lists one, otherwise the course price */
+function dishPrice(m, course, i) {
+  var ip = m.itemPrices && m.itemPrices[course];
+  return ip && ip[i] != null ? ip[i] : (m.prices || {})[course];
+}
+/* Lowest entree price, for "Entrees from $..." */
+function entreeFrom(m) {
+  var ip = m.itemPrices && m.itemPrices.en;
+  return ip ? Math.min.apply(null, ip) : m.prices.en;
+}

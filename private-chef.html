@@ -57,7 +57,7 @@
       document.getElementById("menu-cards").innerHTML = Object.keys(MENUS).map(function (k) {
         var m = MENUS[k];
         var from = m.prixFixe ? "Prix fixe " + money(m.prixFixe) + " per adult"
-                              : "Entrees from " + money(m.prices.en) + " per adult";
+                              : "Entrees from " + money(entreeFrom(m)) + " per adult";
         return '<a class="card card-link menu-card" href="' + m.page + '">' +
           '<div class="media">' + (m.video
             ? '<video src="' + m.video + '" poster="' + m.photo + '" autoplay muted loop playsinline aria-hidden="true"></video>'

@@ -16,6 +16,8 @@
   ];
   var P = m.prices || {};
   var hasKids = !!(m.courses.kid && P.kid);
+  var perDish = !!m.itemPrices && !m.prixFixe;
+  var pickCourses = COURSES.filter(function (c) { return c[0] !== "kid" && m.courses[c[0]]; });
   var optional = COURSES.filter(function (c) {
     return !m.prixFixe && c[0] !== "en" && c[0] !== "kid" && m.courses[c[0]];
   });
@@ -38,10 +40,13 @@
   // ---- Left column: intro + courses ----
   var itemTags = false;
   var courses = COURSES.filter(function (c) { return m.courses[c[0]]; }).map(function (c) {
-    return "<h2>" + c[1] + "</h2>" + m.courses[c[0]].map(function (it) {
+    var each = m.itemPrices && m.itemPrices[c[0]];
+    return "<h2>" + c[1] + "</h2>" +
+      (c[0] === "kid" && P.kid ? '<p class="kids-note">' + money(P.kid) + " per child &middot; kids 5 &amp; under eat free</p>" : "") +
+      m.courses[c[0]].map(function (it, i) {
       var tags = it[2] || [];
       if (tags.length) itemTags = true;
-      return '<div class="menu-item"><b>' + esc(it[0]) + "</b><span>" + esc(it[1]) + "</span>" +
+      return '<div class="menu-item"><b>' + esc(it[0]) + (each ? ' <em class="dish-price">' + money(each[i]) + "</em>" : "") + "</b><span>" + esc(it[1]) + "</span>" +
         (tags.length ? "<div>" + tags.map(function (t) { return badge(t, true); }).join("") + "</div>" : "") +
         "</div>";
     }).join("");
@@ -70,8 +75,19 @@
     "</div>" +
     '<aside aria-label="Pricing calculator">' +
       "<h3>Your price</h3>" +
-      stepper("a", "Adults") + (hasKids ? stepper("k", "Kids") : "") +
-      (optional.length
+      stepper("a", "Adults") + (hasKids ? stepper("k", "Kids") + stepper("t", "Kids 5 & under", " <small>(free)</small>") : "") +
+      (perDish
+        ? '<div class="lines"><small>Choose a dish for each course</small>' +
+            pickCourses.map(function (c) {
+              return '<label class="dish-pick">' + c[1].replace(/s$/, "") +
+                '<select data-pick="' + c[0] + '">' +
+                  (c[0] === "en" ? "" : '<option value="">None</option>') +
+                  m.courses[c[0]].map(function (it, i) {
+                    return '<option value="' + i + '"' + (i === 0 ? " selected" : "") + ">" + esc(it[0]) + " · " + money(dishPrice(m, c[0], i)) + "</option>";
+                  }).join("") +
+                "</select></label>";
+            }).join("") + "</div>"
+        : optional.length
         ? '<div class="lines"><small>Add courses for adults (entrees always included)</small>' +
             optional.map(function (c) {
               return '<label><input type="checkbox" data-c="' + c[0] + '" checked /> ' + c[1] + "</label>";
@@ -93,17 +109,17 @@
     img.replaceWith(ph);
   });
 
-  function stepper(k, label) {
-    return '<div class="row"><span id="l' + k + '">' + label + "</span>" +
+  function stepper(k, label, extra) {
+    return '<div class="row"><span id="l' + k + '">' + esc(label) + (extra || "") + "</span>" +
       '<div class="step">' +
-        '<button data-k="' + k + '" data-d="-1" aria-label="Fewer ' + label.toLowerCase() + '">&minus;</button>' +
+        '<button data-k="' + k + '" data-d="-1" aria-label="Fewer ' + esc(label.toLowerCase()) + '">&minus;</button>' +
         '<output id="' + k + '" aria-labelledby="l' + k + '"></output>' +
-        '<button data-k="' + k + '" data-d="1" aria-label="More ' + label.toLowerCase() + '">+</button>' +
+        '<button data-k="' + k + '" data-d="1" aria-label="More ' + esc(label.toLowerCase()) + '">+</button>' +
       "</div></div>";
   }
 
   // ---- Calculator ----
-  var S = { a: 2, k: 0 };
+  var S = { a: 2, k: 0, t: 0 };
   var on = {};
   optional.forEach(function (c) { on[c[0]] = true; });
 
@@ -119,6 +135,14 @@
     if (m.prixFixe) {
       sub += m.prixFixe * a;
       rows.push(row("Prix fixe", a, m.prixFixe));
+    } else if (perDish) {
+      pickCourses.forEach(function (c) {
+        var v = root.querySelector('select[data-pick="' + c[0] + '"]').value;
+        if (v === "") return;
+        var price = dishPrice(m, c[0], +v);
+        sub += price * a;
+        rows.push(row(esc(m.courses[c[0]][+v][0]), a, price));
+      });
     } else {
       COURSES.forEach(function (c) {
         var code = c[0];
@@ -133,6 +157,9 @@
       sub += P.kid * k;
       rows.push(row("Kids menu", k, P.kid));
     }
+    if (hasKids && S.t) {
+      rows.push("<div><span>Kids 5 &amp; under <small>" + S.t + " &times; free</small></span><span>$0.00</span></div>");
+    }
 
     $("lines").innerHTML = rows.join("");
     var total = Math.max(m.min, sub);
@@ -141,10 +168,10 @@
     if (sub < m.min) {
       $("note").textContent = "The " + money(m.min) + " minimum applies. Your selections come to " + money(sub) + ".";
     } else {
-      $("note").textContent = money(total / guests) + " per guest.";
+      $("note").textContent = money(total / guests) + (S.t ? " per paying guest." : " per guest.");
     }
     $("a").textContent = a;
-    if (hasKids) $("k").textContent = k;
+    if (hasKids) { $("k").textContent = k; $("t").textContent = S.t; }
   }
 
   root.querySelectorAll(".step button").forEach(function (b) {
@@ -154,6 +181,9 @@
       S[key] = Math.max(key === "a" ? 1 : 0, Math.min(60, next));
       calc();
     });
+  });
+  root.querySelectorAll("select[data-pick]").forEach(function (sel) {
+    sel.addEventListener("change", calc);
   });
   root.querySelectorAll("input[data-c]").forEach(function (i) {
     i.addEventListener("change", function () { on[i.dataset.c] = i.checked; calc(); });
