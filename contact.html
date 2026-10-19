@@ -8,7 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/site.css?v=202610191138" />
+  <link rel="stylesheet" href="css/site.css?v=202610191230" />
+  <link rel="canonical" href="https://heartnsoulkitchen.com/contact.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Heart N Soul" />
+  <meta property="og:title" content="Book Heart N Soul" />
+  <meta property="og:description" content="Book Heart N Soul for a private chef dinner, event or catering." />
+  <meta property="og:url" content="https://heartnsoulkitchen.com/contact.html" />
+  <meta property="og:image" content="https://heartnsoulkitchen.com/images/share.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="images/logo-heart.svg" />
 </head>
 <body>
   <header class="site-header"></header>
@@ -24,34 +33,52 @@
 
     <section class="section-tight" style="padding-bottom:96px">
       <div class="container grid-2" style="align-items:start">
-        <form class="form card" id="inquiry">
+        <!-- Requests are delivered by FormSubmit (formsubmit.co): no account needed.
+             The first request to each email address sends you an "Activate" email once. -->
+        <form class="form card" id="inquiry" method="POST" action="https://formsubmit.co/Chefdsj@gmail.com">
+          <input type="hidden" name="_subject" value="New booking request - Heart N Soul" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="true" />
+          <input type="hidden" name="_next" value="" id="next-url" />
+          <input type="hidden" name="_autoresponse" value="Thank you for reaching out to Heart N Soul! We received your request and Chef Dillon will get back to you within 24-48 hours to confirm your date, menu and pricing. Made with heart, seasoned with soul." />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="row-2">
             <label>Name <input name="name" required autocomplete="name" /></label>
             <label>Email <input name="email" type="email" required autocomplete="email" /></label>
           </div>
           <div class="row-2">
-            <label>Phone <input name="phone" type="tel" autocomplete="tel" /></label>
-            <label>Event date <input name="date" type="date" /></label>
+            <label>Phone <input name="phone" type="tel" required autocomplete="tel" /></label>
+            <label>Guests <input name="guests" type="number" min="1" value="2" required /></label>
           </div>
           <div class="row-2">
-            <label>Service
-              <select name="service">
-                <option>Private Chef: Little Italy</option>
-                <option>Private Chef: Soul Of The South</option>
-                <option>Private Chef: You're A Wizard Harry!</option>
-                <option>Private Chef: Health is Wealth</option>
-                <option>Private Chef: Medi Food Retreat</option>
-                <option>Private Chef: Rise And Shine (prix fixe brunch)</option>
-                <option>Private Chef: Rise and Shine Breakfast</option>
-                <option>Private Chef: Home for the Holidaze? (holiday)</option>
-                <option>Burger catering or pop-up</option>
-                <option>Custom event</option>
+            <label>Event date <input name="date" id="event-date" type="date" required /></label>
+            <label>Start time
+              <select name="time" required>
+                <option value="">Choose a time…</option>
+                <option>8:00 AM</option><option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+                <option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option>
+                <option>4:00 PM</option><option>5:00 PM</option><option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option>
               </select>
             </label>
-            <label>Guests <input name="guests" type="number" min="1" value="2" /></label>
           </div>
-          <label>Tell us more <textarea name="message" placeholder="Occasion, allergies, anything we should know"></textarea></label>
-          <div><button class="btn btn-primary" type="submit">Send inquiry</button></div>
+          <label>Service
+            <select name="service" id="service">
+              <option>Private Chef: Little Italy</option>
+              <option>Private Chef: Soul Of The South</option>
+              <option>Private Chef: You're A Wizard Harry!</option>
+              <option>Private Chef: Health is Wealth</option>
+              <option>Private Chef: Medi Food Retreat</option>
+              <option>Private Chef: Rise And Shine (prix fixe brunch)</option>
+              <option>Private Chef: Rise and Shine Breakfast</option>
+              <option>Private Chef: Home for the Holidaze? (holiday)</option>
+              <option>Burger catering or pop-up</option>
+              <option>Custom event</option>
+            </select>
+          </label>
+          <label>Event address or area <input name="location" autocomplete="street-address" placeholder="Where will we be cooking?" /></label>
+          <label>Tell us more <textarea name="message" placeholder="Occasion, allergies, dishes you picked, anything we should know"></textarea></label>
+          <p class="form-note">Please book at least 5 days ahead. We&rsquo;ll confirm availability and pricing by email or phone.</p>
+          <div><button class="btn btn-primary" type="submit">Send request</button></div>
         </form>
 
         <div>
@@ -67,30 +94,38 @@
   </main>
 
   <footer class="site-footer"></footer>
-  <script src="js/site.js?v=202610191138"></script>
+  <script src="js/site.js?v=202610191230"></script>
   <script>
-    // Prefill the form when coming from the Mix & match builder
     (function () {
-      var q = new URLSearchParams(location.search), f = document.getElementById("inquiry");
-      if (q.get("service")) f.service.value = q.get("service");
+      var f = document.getElementById("inquiry");
+      var q = new URLSearchParams(location.search);
+      // Prefill from menu pages / Mix & match builder
+      if (q.get("service")) {
+        var want = q.get("service");
+        [].some.call(f.service.options, function (o) {
+          if (o.text === want || o.text.indexOf(want + " (") === 0) { f.service.value = o.text; return true; }
+        });
+      }
       if (q.get("guests")) f.guests.value = q.get("guests");
       if (q.get("message")) f.message.value = q.get("message");
-    })();
-  </script>
-  <script>
-    // GitHub Pages has no server, so the form opens the visitor's email app
-    // with everything filled in. Swap this for a form service later if you like.
-    document.getElementById("inquiry").addEventListener("submit", function (e) {
-      e.preventDefault();
-      var d = new FormData(e.target);
+
+      // Earliest bookable date: 5 days from today
+      var d = new Date(); d.setDate(d.getDate() + 5);
+      document.getElementById("event-date").min = d.toISOString().slice(0, 10);
+
+      // After sending, return to our thank-you page
+      document.getElementById("next-url").value = new URL("thanks.html", location.href).href;
+
       // Burger requests go to the burgers inbox, everything else to the private chef inbox
-      var isBurgers = /burger/i.test(d.get("service"));
-      var to = document.querySelector(isBurgers ? '[data-contact="burgersEmail"]' : '[data-contact="chefEmail"]').textContent;
-      var body = ["Name: " + d.get("name"), "Email: " + d.get("email"), "Phone: " + d.get("phone"),
-        "Date: " + d.get("date"), "Service: " + d.get("service"), "Guests: " + d.get("guests"), "", d.get("message")].join("\n");
-      location.href = "mailto:" + to + "?subject=" + encodeURIComponent("Booking inquiry: " + d.get("service")) +
-        "&body=" + encodeURIComponent(body);
-    });
+      var CHEF = "Chefdsj@gmail.com", BURGERS = "Heartnsoulburgers@gmail.com";
+      function route() {
+        var burgers = /burger/i.test(f.service.value);
+        f.action = "https://formsubmit.co/" + (burgers ? BURGERS : CHEF);
+        f._subject.value = "New " + (burgers ? "burger" : "private chef") + " request - " + f.service.value;
+      }
+      f.service.addEventListener("change", route);
+      route();
+    })();
   </script>
 </body>
 </html>

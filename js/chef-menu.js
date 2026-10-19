@@ -96,7 +96,7 @@
       '<div class="lines" id="lines" aria-live="polite"></div>' +
       '<div class="total"><span>Total</span><span id="tot"></span></div>' +
       '<div class="note" id="note"></div>' +
-      '<a class="btn btn-primary" href="contact.html" style="display:block;text-align:center;margin-top:18px">Book this menu</a>' +
+      '<a class="btn btn-primary" id="book" href="contact.html" style="display:block;text-align:center;margin-top:18px">Book this menu</a>' +
       '<p class="note" style="text-align:center;margin-top:12px"><a href="private-chef.html#build">Want to mix &amp; match dishes from other menus?</a></p>' +
     "</aside>";
 
@@ -162,6 +162,15 @@
     }
 
     $("lines").innerHTML = rows.join("");
+    // Pass this menu, guest count and picks to the booking form
+    var picks = [];
+    if (perDish) pickCourses.forEach(function (c) {
+      var v = root.querySelector('select[data-pick="' + c[0] + '"]').value;
+      if (v !== "") picks.push(c[1].replace(/s$/, "") + ": " + m.courses[c[0]][+v][0]);
+    });
+    var who = a + " adult" + (a > 1 ? "s" : "") + (k ? ", " + k + " kid" + (k > 1 ? "s" : "") : "") + (S.t ? ", " + S.t + " kid" + (S.t > 1 ? "s" : "") + " 5 & under" : "");
+    var msg = m.name + " for " + who + (picks.length ? ":\n" + picks.join("\n") : "") + "\nEstimated total: " + money(Math.max(m.min, sub));
+    $("book").href = "contact.html?service=" + encodeURIComponent("Private Chef: " + m.name) + "&guests=" + (a + k + S.t) + "&message=" + encodeURIComponent(msg);
     var total = Math.max(m.min, sub);
     var guests = a + k;
     $("tot").textContent = money(total);
