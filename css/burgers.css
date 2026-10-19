@@ -114,23 +114,30 @@ body.theme-burgers {
 
 /* ---------- 2 Heart Combos box ---------- */
 .combo {
-  display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 380px;
   border: 2px solid rgba(224, 27, 34, 0.85);
   border-radius: 6px;
-  padding: 14px 14px 10px 20px;
+  padding: 22px 26px 20px;
   background: rgba(0,0,0,0.35);
 }
-.combo-title { display: flex; align-items: center; gap: 10px; margin: 0; font: 500 clamp(1.6rem, 3vw, 2.3rem)/1 var(--display); text-transform: uppercase; color: #d9d6d2; }
-.combo-price { font: 600 clamp(3rem, 6vw, 4.6rem)/1 var(--display); color: var(--red); margin-top: 4px !important; }
-.combo-price span { font-size: 0.55em; color: #d9d6d2; font-weight: 500; text-transform: uppercase; vertical-align: 0.25em; }
-.best { color: var(--gold); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.06em; text-transform: uppercase; margin: 2px 0 8px 70px !important; }
-.includes { color: var(--red); font-size: 1.05rem; letter-spacing: 0.06em; text-transform: uppercase; }
-.combo ul li { font-weight: 300; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 0 4px 26px; position: relative; }
-.combo ul li::before { content: ""; position: absolute; left: 0; top: 7px; width: 16px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21S2 14.6 2 7.6A5.3 5.3 0 0 1 12 5a5.3 5.3 0 0 1 10 2.6C22 14.6 12 21 12 21z' fill='%23e2b33f'/%3E%3C/svg%3E") center / contain no-repeat; }
+.combo-title { display: flex; justify-content: center; align-items: center; gap: 14px; margin: 0; font: 500 clamp(1.7rem, 3vw, 2.6rem)/1 var(--display); text-transform: uppercase; color: #e4e0db; white-space: nowrap; }
+.combo-body { display: grid; grid-template-columns: 1fr; gap: 14px; justify-items: center; text-align: center; }
+.combo-incl ul { display: inline-block; text-align: left; }
+.combo-incl { text-align: center; }
+.combo-price { font: 600 clamp(3.4rem, 6.5vw, 5.4rem)/0.95 var(--display); color: var(--red); white-space: nowrap; }
+.combo-price span { font-size: 0.42em; color: #e4e0db; font-weight: 500; text-transform: uppercase; vertical-align: 0.55em; margin-right: 4px; }
+.best { color: var(--gold); font-weight: 600; font-size: 1.35rem; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 6px !important; text-align: center; }
+.includes { color: var(--red); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px !important; }
+.combo ul li { font-weight: 400; font-size: 1.1rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 6px 0 6px 30px; position: relative; }
+.combo ul li::before { content: ""; position: absolute; left: 0; top: 10px; width: 19px; height: 17px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'%3E%3Cpath d='M12 21S2 14.6 2 7.6A5.3 5.3 0 0 1 12 5a5.3 5.3 0 0 1 10 2.6C22 14.6 12 21 12 21z' fill='%23e2b33f'/%3E%3C/svg%3E") center / contain no-repeat; }
 .slogan { font: 600 1.35rem/1.05 var(--display); text-transform: uppercase; color: #a8a29c; letter-spacing: 0.03em; margin-top: 10px !important; }
 .slogan span { color: var(--red); }
+.combo-slogan span { white-space: nowrap; }
+.combo-slogan { font-size: 1.7rem; letter-spacing: 0.1em; text-align: center; margin: 0 !important; padding-top: 12px; border-top: 1px dashed rgba(224, 27, 34, 0.5); }
 
 /* ---------- Signature Hearts ---------- */
 .sig { display: grid; grid-template-columns: 1fr 190px; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 2px dashed rgba(224, 27, 34, 0.55); }
@@ -154,7 +161,7 @@ body.theme-burgers {
 .sides, .drinks { padding-top: 14px; border-top: 1px solid rgba(224, 27, 34, 0.25); min-width: 0; }
 .drinks { border-left: 1px solid rgba(224, 27, 34, 0.45); padding-left: 24px; margin-left: -10px; }
 .sides .line { margin-top: 4px; }
-.sides img { width: 100%; max-width: 330px; margin-top: 6px; }
+.sides img { width: 100%; max-width: 380px; margin: 8px auto 0; }
 .drink-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .drink { display: grid; grid-template-columns: 1fr 76px; gap: 8px; align-items: center; }
 .drink .price { color: var(--red); font-size: 1.6rem; }
@@ -187,8 +194,9 @@ body.theme-burgers {
   .brand img { margin: 0 auto; }
 }
 @media (max-width: 560px) {
-  .combo { grid-template-columns: 1fr; }
-  .combo-img { max-width: 300px; margin: 0 auto; }
+  .combo { min-height: 0; }
+  .combo-slogan { font-size: 1.3rem; }
+  .combo-title { white-space: normal; }
   .sig.plain { padding-right: 0; }
   .drink-grid { grid-template-columns: 1fr; }
   .brush { font-size: 1.45rem; padding-right: 40px; }

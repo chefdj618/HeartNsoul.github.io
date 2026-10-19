@@ -67,6 +67,15 @@
   <footer class="site-footer"></footer>
   <script src="js/site.js"></script>
   <script>
+    // Prefill the form when coming from the Mix & match builder
+    (function () {
+      var q = new URLSearchParams(location.search), f = document.getElementById("inquiry");
+      if (q.get("service")) f.service.value = q.get("service");
+      if (q.get("guests")) f.guests.value = q.get("guests");
+      if (q.get("message")) f.message.value = q.get("message");
+    })();
+  </script>
+  <script>
     // GitHub Pages has no server, so the form opens the visitor's email app
     // with everything filled in. Swap this for a form service later if you like.
     document.getElementById("inquiry").addEventListener("submit", function (e) {

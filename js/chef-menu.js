@@ -81,6 +81,7 @@
       '<div class="total"><span>Total</span><span id="tot"></span></div>' +
       '<div class="note" id="note"></div>' +
       '<a class="btn btn-primary" href="contact.html" style="display:block;text-align:center;margin-top:18px">Book this menu</a>' +
+      '<p class="note" style="text-align:center;margin-top:12px"><a href="private-chef.html#build">Want to mix &amp; match dishes from other menus?</a></p>' +
     "</aside>";
 
   // Hide the photo box gracefully until a real photo is added

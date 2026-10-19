@@ -18,21 +18,39 @@
     <section class="page-hero center">
       <div class="container">
         <span class="eyebrow">Private Chef</span>
-        <h1>Dinner, cooked in your home.</h1>
-        <p class="lead">Pick a themed menu, choose your courses and see your price instantly. Every menu is made fresh on-site.</p>
+        <h1>Choose your menu.</h1>
+        <p class="lead">Pick one of our themed dinners, or mix and match dishes from any menu to build your own. Every dinner is cooked fresh in your home.</p>
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn btn-primary" href="#menus">Themed menus</a>
+          <a class="btn btn-outline" href="#build">Mix &amp; match</a>
+        </div>
         <hr class="divider" />
       </div>
     </section>
 
-    <section class="section-tight" style="padding-bottom:96px">
+    <section class="section-tight" id="menus">
       <!-- Cards are built from js/menus.js -->
       <div class="container menu-cards" id="menu-cards"></div>
+    </section>
+
+    <!-- Mix & match builder (js/builder.js) -->
+    <section class="section section-panel" id="build">
+      <div class="container">
+        <div class="center">
+          <span class="eyebrow">Build your own</span>
+          <h2>Mix &amp; match</h2>
+          <p class="lead" style="max-width:620px;margin:0 auto">Choose any dish from any menu for each course. Each dish is priced from its own menu.</p>
+          <hr class="divider" />
+        </div>
+        <div class="builder" id="builder"></div>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer"></footer>
   <script src="js/site.js"></script>
   <script src="js/menus.js"></script>
+  <script src="js/builder.js"></script>
   <script>
     (function () {
       function money(n) { return "$" + (n % 1 ? n.toFixed(2) : n); }

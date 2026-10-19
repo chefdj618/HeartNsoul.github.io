@@ -9,12 +9,12 @@
   gap: 40px;
 }
 
-h1 {
+.wrap h1 {
   font-size: 34px;
   margin: 0 0 6px;
 }
 
-h2 {
+.wrap h2 {
   font-size: 1.9rem;
   margin: 36px 0 4px;
   padding-top: 20px;
@@ -31,7 +31,7 @@ h2 {
   width: 190px;
   height: 190px;
   object-fit: cover;
-  object-position: 50% 45%;
+  object-position: 50% 50%;
   border-radius: 14px;
   flex: none;
 }
@@ -82,7 +82,7 @@ h2 {
   color: var(--c-muted);
 }
 
-aside {
+.wrap aside, .builder aside {
   position: sticky;
   top: 96px;
   align-self: start;
@@ -236,10 +236,37 @@ input[type="checkbox"] {
 /* ---------- Private chef hub page ---------- */
 
 .menu-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
-.menu-card .media { margin-bottom: 22px; }
+.menu-card .media { margin-bottom: 22px; aspect-ratio: 1 / 1; }
 .menu-card .from { color: var(--c-ink); font-weight: 600; font-size: 0.9rem; margin: 0 0 8px; }
 .menu-card .badges { margin: 0 0 14px; }
 
 @media (max-width: 560px) { .hero-headline .title-row .tag { display: none; } }
 
 video.li-photo { object-position: 50% 55%; background: var(--c-panel); }
+
+/* ---------- Mix & match builder ---------- */
+
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 36px; margin-top: 36px; align-items: start; }
+.picks { display: grid; gap: 16px; }
+.pick { background: var(--c-surface); border: 1px solid var(--c-line); border-radius: var(--radius); padding: 18px 20px; }
+.pick-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.pick-head h3 { margin: 0; font-size: 1.5rem; }
+.pick-head .req, .pick-head .opt { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+.pick-head .req { color: var(--c-accent); }
+.pick-head .opt { color: var(--c-muted); }
+.pick select { width: 100%; font: inherit; color: var(--c-ink); background: var(--c-bg); border: 1px solid var(--c-line); border-radius: 10px; padding: 11px 12px; }
+.pick select:focus { outline: none; border-color: var(--c-gold); }
+.pick-desc { color: var(--c-muted); font-size: 0.88rem; margin: 8px 0 0; }
+.pick-desc:empty { display: none; }
+.pick-desc b { color: var(--c-gold); font-weight: 600; }
+.split { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--c-line); }
+.split-toggle { font-size: 0.9rem; color: var(--c-ink); }
+.split-body { margin-top: 10px; }
+.split-body .row { margin-top: 10px; font-size: 0.9rem; }
+.split-note { color: var(--c-muted); font-size: 0.85rem; text-align: center; margin: 4px 0 0; }
+.builder aside { position: sticky; top: 96px; }
+.btn.disabled { opacity: 0.45; cursor: not-allowed; }
+@media (max-width: 860px) {
+  .builder { grid-template-columns: 1fr; }
+  .builder aside { position: static; }
+}
