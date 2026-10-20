@@ -5,12 +5,20 @@
    ========================================================== */
 
 (function () {
+  /* ===== Burger section on/off =====
+     false = burgers are hidden from the public (nav, home page, about, booking form).
+     true  = burgers are shown everywhere again.
+     You can still preview the burger page yourself at burgers.html?preview=1 */
+  var SHOW_BURGERS = false;
+  if (SHOW_BURGERS) document.documentElement.classList.add("burgers-on");
+
   var NAV = [
     { href: "index.html", label: "Home" },
     { href: "burgers.html", label: "Burgers" },
     { href: "private-chef.html", label: "Private Chef" },
     { href: "about.html", label: "About" }
   ];
+  if (!SHOW_BURGERS) NAV = NAV.filter(function (i) { return i.href !== "burgers.html"; });
   var BOOK = { href: "contact.html", label: "Book Now" };
 
   var CONTACT = {
@@ -65,8 +73,8 @@
         "</ul></div>" +
         "<div><h4>Get in touch</h4><ul>" +
           '<li><a href="tel:' + CONTACT.phoneLink + '">' + CONTACT.phone + "</a></li>" +
-          '<li>Burgers: <a href="mailto:' + CONTACT.burgersEmail + '">' + CONTACT.burgersEmail + "</a></li>" +
-          '<li>Private chef: <a href="mailto:' + CONTACT.chefEmail + '">' + CONTACT.chefEmail + "</a></li>" +
+          (SHOW_BURGERS ? '<li>Burgers: <a href="mailto:' + CONTACT.burgersEmail + '">' + CONTACT.burgersEmail + "</a></li>" : "") +
+          '<li>' + (SHOW_BURGERS ? "Private chef: " : "") + '<a href="mailto:' + CONTACT.chefEmail + '">' + CONTACT.chefEmail + "</a></li>" +
           '<li><a href="' + BOOK.href + '">Book a private chef</a></li>' +
         "</ul></div>" +
       "</div>" +
@@ -94,4 +102,9 @@
     if (key === "phone") { el.textContent = CONTACT.phone; el.href = "tel:" + CONTACT.phoneLink; }
     if (key === "burgersEmail" || key === "chefEmail") { el.textContent = CONTACT[key]; el.href = "mailto:" + CONTACT[key]; }
   });
+
+  // Remove burger choices from forms while burgers are hidden
+  if (!SHOW_BURGERS) {
+    document.querySelectorAll("option[data-burgers]").forEach(function (o) { o.remove(); });
+  }
 })();

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="robots" content="noindex, nofollow" />
+  <script>
+    // Burgers are hidden for now. Visitors go to the home page; preview with burgers.html?preview=1
+    if (!/[?&]preview=1/.test(location.search)) location.replace("index.html");
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Heart N Soul Burgers menu: smashburgers, Soul Fries, signature drinks and combos." />
@@ -8,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/site.css?v=202610191230" />
-  <link rel="stylesheet" href="css/burgers.css?v=202610191230" />
+  <link rel="stylesheet" href="css/site.css?v=202610191716" />
+  <link rel="stylesheet" href="css/burgers.css?v=202610191716" />
   <link rel="canonical" href="https://heartnsoulkitchen.com/burgers.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Heart N Soul" />
@@ -167,6 +172,6 @@
   </main>
 
   <footer class="site-footer"></footer>
-  <script src="js/site.js?v=202610191230"></script>
+  <script src="js/site.js?v=202610191716"></script>
 </body>
 </html>
